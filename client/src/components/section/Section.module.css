@@ -1,0 +1,8 @@
+.section__row{
+	max-width: 1200px;
+	margin:0 auto;
+	padding:20px;
+	display: grid;
+	grid-template: 1fr /  repeat( auto-fit, minmax(min(300px, 100%), 1fr) );
+	gap:2rem;
+}
