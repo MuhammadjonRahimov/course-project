@@ -10,7 +10,7 @@ function Card(props) {
 			<div className=" flex items-center justify-between p-2  bg-[#f4f7f6]">
 				<div>
 					<h4>Author: <span>{props.data.author}</span></h4>
-					<h5>Data:{props.data.time.toLocaleDateString()}</h5>
+					<h5>Published:{props.data.time.toLocaleDateString()}</h5>
 					<h5>Collection: <span>{props.data.collection}</span></h5>
 				</div>
 				<div className="flex items-center gap-[5px]">
