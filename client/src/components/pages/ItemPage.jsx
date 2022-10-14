@@ -8,6 +8,9 @@ function ItemPage() {
 	return (
 		<>
 			<Layout title="Item">
+				<div className="trapezoid">
+
+				</div>
 				<div className="py-5">
 					<div className="mx-auto max-w-[900px] px-5">
 						<div className="max-w-[500px] mx-auto">

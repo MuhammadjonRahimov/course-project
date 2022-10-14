@@ -8,6 +8,7 @@ function Sidebar() {
 	const [active, setActive] = useState(false);
 	function closeSidebar() {
 		setShowSidebar(false);
+		document.body.style.overflow = "auto";
 	}
 	function handleActive() {
 		setActive(!active);

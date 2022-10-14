@@ -13,6 +13,7 @@ function Header({ title }) {
 	const focusRef = useRef(null);
 	function handleSidebar() {
 		setShowSidebar(true);
+		document.body.style.overflow = "hidden";
 	}
 	function searchHandler(e) {
 		e.preventDefault();

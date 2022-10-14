@@ -12,6 +12,7 @@ function AppRouter() {
 			if (e.key === 'Escape') {
 				setShowSidebar(false);
 				setShowAuthForm(false);
+				document.body.style.overflow = "auto";
 			}
 		})
 		return () => document.removeEventListener('keydown', null);
