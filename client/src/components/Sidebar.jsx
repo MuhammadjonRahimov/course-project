@@ -1,11 +1,16 @@
-import { useState, useContext } from 'react';
-import { IsShownContext } from '../context';
 import MyButton from './UI/button/MyButton';
 import Modal from './UI/Modal';
 
+import { useState, useContext } from 'react';
+import { IsShownContext } from '../context';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 function Sidebar() {
+	const location = useLocation();
+	const navigate = useNavigate();
 	const { showSidebar, setShowSidebar, showAuthFormHandler } = useContext(IsShownContext);
 	const [active, setActive] = useState(false);
+
 	function closeSidebar() {
 		setShowSidebar(false);
 		document.body.style.overflow = "auto";
@@ -16,6 +21,10 @@ function Sidebar() {
 	function handleRegLog() {
 		showAuthFormHandler();
 		setShowSidebar(false);
+	}
+	function goHome() {
+		navigate('/');
+		closeSidebar();
 	}
 	const listContent = [{ text: 'Collections' }]
 	return (
@@ -40,6 +49,17 @@ function Sidebar() {
 						</button>
 					</li>
 					{listContent.map(elem => <li className='p-5  border-b-[1px] border-[rgb(230, 234, 234)] font-bold text-2xl' key={elem.text}>{elem.text}</li>)}
+					<li>
+						{location.pathname !== '/' &&
+							<MyButton
+								variant="dark"
+								onClick={goHome}
+								className="absolute bottom-0 left-0 sm:hidden"
+							>
+								back
+							</MyButton>
+						}
+					</li>
 				</ul>
 			</nav>
 		</Modal>

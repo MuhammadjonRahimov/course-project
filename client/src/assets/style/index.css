@@ -32,10 +32,3 @@ body{
 .hidden{
 	overflow: hidden;
 }
-.triangle{
-	width: 0;
-	height: 0;
-	border-top:20px solid transparent;
-	/* border-bottom:50px solid red; */
-	border-right:30px solid green;
-}

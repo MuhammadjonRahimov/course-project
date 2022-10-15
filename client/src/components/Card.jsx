@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Card(props) {
 	const [counter, setCounter] = useState(0);
 	return (
-		<div>
+		<Link to="/single-item">
 			<div className="bg-black uppercase grid place-items-center text-white uppercase min-h-[150px]">
 				item
 			</div>
@@ -22,7 +23,7 @@ function Card(props) {
 					<span className="font-bold">{counter}</span>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
 
