@@ -1,0 +1,8 @@
+export const commentDates = [
+	{ name: 'John Doe', time: new Date(), comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem assumenda, incidunt reiciendis dolor et minus delectus molestias sunt inventore aut odit a error laudantium? Culpa enim cumque modi hic libero?' },
+	{ name: 'John Doe', time: new Date(), comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem assumenda, incidunt reiciendis dolor et minus delectus molestias sunt inventore aut odit a error laudantium? Culpa enim cumque modi hic libero?' },
+	{ name: 'John Doe', time: new Date(), comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem assumenda, incidunt reiciendis dolor et minus delectus molestias sunt inventore aut odit a error laudantium? Culpa enim cumque modi hic libero?' },
+	{ name: 'John Doe', time: new Date(), comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem assumenda, incidunt reiciendis dolor et minus delectus molestias sunt inventore aut odit a error laudantium? Culpa enim cumque modi hic libero?' },
+	{ name: 'John Doe', time: new Date(), comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem assumenda, incidunt reiciendis dolor et minus delectus molestias sunt inventore aut odit a error laudantium? Culpa enim cumque modi hic libero?' },
+	{ name: 'John Doe', time: new Date(), comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem assumenda, incidunt reiciendis dolor et minus delectus molestias sunt inventore aut odit a error laudantium? Culpa enim cumque modi hic libero?' },
+]

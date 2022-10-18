@@ -1,10 +1,14 @@
-import { useState, useRef, useEffect, useContext } from 'react';
-import { IsShownContext } from '../context';
 import MyButton from './UI/button/MyButton';
 import MyForm from './UI/MyForm';
 import MyInput from './UI/MyInput';
 
-function Header() {
+import { useState, useRef, useEffect, useContext } from 'react';
+import { IsShownContext } from '../context';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+function Header({ title }) {
+	const location = useLocation();
+	const navigate = useNavigate();
 	const { showSidebar, setShowSidebar, showAuthFormHandler } = useContext(IsShownContext);
 	const [searching, setSearching] = useState(false);
 	useEffect(() => {
@@ -13,10 +17,14 @@ function Header() {
 	const focusRef = useRef(null);
 	function handleSidebar() {
 		setShowSidebar(true);
+		document.body.style.overflow = "hidden";
 	}
 	function searchHandler(e) {
 		e.preventDefault();
 		setSearching(!searching);
+	}
+	function goHome() {
+		navigate('/');
 	}
 	return (
 		<header className={` bg-[#f4f7f6] h-[70px] border-b-[1px] border-[rgb(230, 234, 234)] flex ${showSidebar && 'translate-x-[320px]'} ease-linear duration-[300ms]`}>
@@ -47,14 +55,25 @@ function Header() {
 								<path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
 							</svg>
 						</MyButton>
-						<h1 className="text-[rgb(20,21,21)] text-[20px] font-bold lowercase pr-[10px] sm:pr-0">Collections.</h1>
-						<MyButton
-							variant="dark"
-							onClick={showAuthFormHandler}
-							className="hidden sm:block"
-						>
-							register / login
-						</MyButton>
+						<h1 className="text-[rgb(20,21,21)] text-[20px] font-bold  pr-[10px] sm:pr-0">{title}</h1>
+						<div className="hidden sm:flex items-center gap-1">
+							<MyButton
+								variant="dark"
+								onClick={showAuthFormHandler}
+								className="hidden md:block"
+							>
+								register / login
+							</MyButton>
+							{
+								location.pathname !== "/" &&
+								<MyButton
+									variant="dark"
+									onClick={goHome}
+								>
+									back
+								</MyButton>
+							}
+						</div>
 					</>
 				}
 			</div>

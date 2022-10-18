@@ -1,32 +1,8 @@
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import { useState, useEffect } from 'react';
-import { IsShownContext } from "./context";
-import RegisterOrLogin from "./components/RegisterOrLogin";
-import Section from "./components/section/Section";
+import AppRouter from "./components/AppRouter";
 
 function App() {
-	const [showSidebar, setShowSidebar] = useState(false);
-	const [showAuthForm, setShowAuthForm] = useState(false);
-	useEffect(() => {
-		document.addEventListener('keydown', e => {
-			if (e.key === 'Escape') {
-				setShowSidebar(false);
-				setShowAuthForm(false);
-			}
-		})
-		return () => document.removeEventListener('keydown', null);
-	}, []);
-	function showAuthFormHandler() {
-		setShowAuthForm(true);
-		document.body.style.overflow = "hidden";
-	}
-
-	function hideAuthFormHandler() {
-		setShowAuthForm(false);
-		document.body.style.overflow = "auto";
-	}
 	return (
+<<<<<<< HEAD
 		<IsShownContext.Provider value={{ showSidebar, setShowSidebar, showAuthForm, showAuthFormHandler, hideAuthFormHandler }}>
 			<Header />
 			{showAuthForm && <RegisterOrLogin />}
@@ -34,6 +10,9 @@ function App() {
 			<Section title='Last updates ' />
 			<Section title="Top 5 big collections" />
 		</IsShownContext.Provider>
+=======
+		<AppRouter />
+>>>>>>> f1bf60f447faccaaab65c87f23560b30b37aae66
 	);
 }
 export default App;
