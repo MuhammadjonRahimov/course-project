@@ -31,7 +31,7 @@ function App() {
 			<Header />
 			{showAuthForm && <RegisterOrLogin />}
 			{showSidebar && <Sidebar />}
-			<Section title='Last updated ' />
+			<Section title='Last updates ' />
 			<Section title="Top 5 big collections" />
 		</IsShownContext.Provider>
 	);
