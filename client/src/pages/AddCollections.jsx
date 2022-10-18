@@ -3,28 +3,30 @@ import MyInput from '../components/UI/MyInput';
 import Layout from '../components/UI/Layout';
 
 import { Editor } from '@tinymce/tinymce-react';
-import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useRef } from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+
 const labelClass = "font-bold"
 
 function AddCollections() {
-	const { register, reset, handleSubmit, watch, setValue, formState: { errors } } = useForm({ mode: "onBlur" });
-	const [initialDesc, setInitialDesc] = useState('');
+	const { register, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onBlur", });
+	const { fields: extraFields, append } = useFieldArray({ control, name: "extraFields", });
+
 	const editorRef = useRef();
+	const navigate = useNavigate();
+
+	function addExtraFieldHandler() {
+		append({ name: '', type: '' });
+	}
 
 	function formSubmit(data) {
 		console.log(data);
-		setInitialDesc('');
-		reset({
-			name: '',
-			topic: '',
-			"user-pic": '',
-			desc: '',
-		});
+		navigate(-1);
 	}
 	return (
 		<Layout>
-
 			<div className="p-5">
 				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-[15px]">
 					<label className={labelClass} htmlFor="name">
@@ -39,7 +41,6 @@ function AddCollections() {
 					<label className={labelClass} >
 						Description:
 						<Editor
-							value={initialDesc}
 							apiKey='87sdhktm3lv6ev797loxuebuzcbv97w0kdrofgwbujanwogv'
 							onInit={(evt, editor) => editorRef.current = editor}
 							{...register('desc', { required: true })}
@@ -69,8 +70,37 @@ function AddCollections() {
 						/>
 						{/* {errors['user-pic'] && <p className="text-red-500">This field is required</p>} */}
 					</div>
-					<MyButton variant="dark" className="self-start">
+					<div>
+						<h2 className="my-3 font-bold text-[25px]">Add extra fields...</h2>
+						{
+							extraFields.map((field, index) => (
+								<div key={field.id} className="mb-5 last:mb-0">
+									<MyInput {...register(`extraFields.${index}.name`)}
+										className="border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px] mr-2"
+									/>
+									<select {...register(`extraFields.${index}.type`)}
+										className="border border-[#dbe0df] border-solid placeholder:text-[#777] p-[10px] rounded-[8px] mr-2"
+									>
+										<option value="">Select a type</option>
+										<option value="string">String</option>
+										<option value="number">Number</option>
+										<option value="date">Date</option>
+										<option value="textarea">Text</option>
+										<option value="checkbox">Checkbox</option>
+									</select>
+								</div>
+							))
+						}
+					</div>
+					<MyButton
+						onClick={addExtraFieldHandler}
+						variant="dark"
+						className="self-start"
+					>
 						Add field
+					</MyButton>
+					<MyButton type="submit" variant="dark" className="self-start">
+						save
 					</MyButton>
 				</form>
 			</div>
