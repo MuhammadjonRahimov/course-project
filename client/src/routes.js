@@ -1,6 +1,6 @@
-import Collections from "./components/pages/Collections"
-import Home from "./components/pages/Home"
-import ItemPage from "./components/pages/ItemPage"
+import Collections from "./pages/Collections"
+import Home from "./pages/Home"
+import ItemPage from "./pages/ItemPage"
 
 export const publicRoutes = [
 	{ path: '/', element: <Home /> },

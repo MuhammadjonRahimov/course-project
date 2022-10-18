@@ -5,7 +5,7 @@ const portalElement = document.getElementById('modal');
 
 function Backdrop() {
 	return (
-		<div
+		<div id="backdrop"
 			className="bg-[rgba(0,0,0,0.8)] absolute top-0 left-0 bottom-0 right-0 z-[1]">
 		</div>
 	)

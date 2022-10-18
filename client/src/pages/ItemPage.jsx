@@ -1,8 +1,8 @@
-import Layout from '../UI/Layout';
-import Card from '../Card';
-import Comment from '../Comment';
-import { singleDate } from '../../dates/card-dates';
-import { commentDates } from '../../dates/comment-dates';
+import Layout from '../components/UI/Layout';
+import Card from '../components/Card';
+import Comment from '../components/Comment';
+import { singleDate } from '../dates/card-dates';
+import { commentDates } from '../dates/comment-dates';
 
 function ItemPage() {
 	return (

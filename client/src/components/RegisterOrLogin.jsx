@@ -18,7 +18,7 @@ function RegisterOrLogin() {
 	}
 
 	return (
-		<Modal isReg={true}>
+		<Modal>
 			<MyButton variant="light" onClick={hideAuthFormHandler} className="bg-white absolute z-[3] right-0 top-0">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
 					<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -34,7 +34,9 @@ function RegisterOrLogin() {
 						</div>
 						<MyForm className='flex flex-col gap-y-[20px]'>
 							{registerInputDates.map(data =>
-								<MyInput key={data.placeholder} className="border border-[#dbe0df] border-solid  p-[10px]" placeholder={data.placeholder} />
+								<MyInput key={data.placeholder}
+									className="border border-[#dbe0df] border-solid placeholder:text-[#dbe0df] py-[10px]"
+									placeholder={data.placeholder} />
 							)}
 							<MyButton variant="green">register now</MyButton>
 						</MyForm>
@@ -46,14 +48,16 @@ function RegisterOrLogin() {
 						</div>
 						<MyForm className='flex flex-col gap-y-[20px]'>
 							{loginInputDates.map(data =>
-								<MyInput key={data.placeholder} className="border border-[#dbe0df] border-solid  p-[10px]" placeholder={data.placeholder} type={data.type || 'text'} />
+								<MyInput key={data.placeholder}
+									className="border border-[#dbe0df] border-solid placeholder:text-[#dbe0df] py-[10px]"
+									placeholder={data.placeholder} type={data.type} />
 							)}
 							<MyButton variant="green">login now</MyButton>
 						</MyForm>
 					</>
 				}
 			</div>
-		</Modal>
+		</Modal >
 	)
 }
 

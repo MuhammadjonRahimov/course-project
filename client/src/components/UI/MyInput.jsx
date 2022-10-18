@@ -1,12 +1,12 @@
 import React from 'react';
 
-const MyInput = React.forwardRef((props, ref) => {
+const MyInput = React.forwardRef(({ className, ...props }, ref) => {
 	return (
 		<input
 			type={props.type || 'text'}
 			ref={ref}
-			className="w-full flex-1 bg-transparent px-[10px] py-[5px]
-			placeholder:text-inherit tracking-[1px] sm:tracking-[2px]"
+			className={`px-[10px] py-[5px]
+			placeholder:text-inherit tracking-[1px] font-normal sm:tracking-[2px] ${className}`}
 			{...props}
 		/>
 	)

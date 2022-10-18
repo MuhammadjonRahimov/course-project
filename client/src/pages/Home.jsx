@@ -1,9 +1,8 @@
-import Layout from "../UI/Layout";
-import Section from "../section/Section";
-import cardDates from "../../dates/card-dates";
-import { tags } from "../../dates/tag-dates";
-import Tags from "../Tags";
-
+import Layout from "../components/UI/Layout";
+import Section from "../components/section/Section";
+import cardDates from "../dates/card-dates";
+import { tags } from "../dates/tag-dates";
+import Tags from '../components/Tags';
 
 function Home() {
 	const paginationArray = [1, 2, 3, 4, 5];
@@ -15,5 +14,4 @@ function Home() {
 		</Layout>
 	)
 }
-
 export default Home;
