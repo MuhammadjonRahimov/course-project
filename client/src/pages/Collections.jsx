@@ -1,8 +1,7 @@
-import dates from '../dates/card-dates'
 import Layout from "../components/UI/Layout";
 import Section from "../components/section/Section";
-
 import cardDates from '../dates/card-dates';
+
 
 
 function Collections() {

@@ -7,6 +7,7 @@ import { publicRoutes, privateRoutes } from '../routes';
 function AppRouter() {
 	const [showSidebar, setShowSidebar] = useState(false);
 	const [showAuthForm, setShowAuthForm] = useState(false);
+	const [isAuth, setIsAuth] = useState(false);
 
 	useEffect(() => {
 		document.addEventListener('keydown', e => {
@@ -22,7 +23,7 @@ function AppRouter() {
 	useEffect(() => {
 		document.addEventListener('click', e => {
 			const id = e.target.getAttribute('id');
-			if (id === 'backdrop') {
+			if (id === 'overlay') {
 				setShowSidebar(false);
 				setShowAuthForm(false);
 				document.body.style.overflow = "auto";
@@ -41,7 +42,7 @@ function AppRouter() {
 		document.body.style.overflow = "auto";
 	}
 	return (
-		<IsShownContext.Provider value={{ showSidebar, setShowSidebar, showAuthForm, showAuthFormHandler, hideAuthFormHandler }}>
+		<IsShownContext.Provider value={{ showSidebar, setShowSidebar, isAuth, showAuthForm, showAuthFormHandler, hideAuthFormHandler }}>
 			<Routes>
 				{publicRoutes.map((route, index) => <Route key={index} path={route.path} element={route.element} />)}
 			</Routes>

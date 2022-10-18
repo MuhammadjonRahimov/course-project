@@ -4,8 +4,7 @@ import AddCollections from "./pages/AddCollections";
 function App() {
 	return (
 		<>
-			{/* <AppRouter /> */}
-			<AddCollections />
+			<AppRouter />
 		</>
 	);
 }

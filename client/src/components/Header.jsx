@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function Header({ title }) {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const { showSidebar, setShowSidebar, showAuthFormHandler } = useContext(IsShownContext);
+	const { showSidebar, setShowSidebar, showAuthFormHandler, isAuth } = useContext(IsShownContext);
 	const [searching, setSearching] = useState(false);
 	useEffect(() => {
 		searching && focusRef.current.focus();
@@ -58,13 +58,21 @@ function Header({ title }) {
 						</MyButton>
 						<h1 className="text-[rgb(20,21,21)] text-[20px] font-bold  pr-[10px] sm:pr-0">{title}</h1>
 						<div className="hidden sm:flex items-center gap-1">
-							<MyButton
-								variant="dark"
-								onClick={showAuthFormHandler}
-								className="hidden md:block"
-							>
-								register / login
-							</MyButton>
+							{isAuth ?
+								<MyButton
+									variant="dark"
+									className="hidden md:block"
+								>
+									log out
+								</MyButton> :
+								<MyButton
+									variant="dark"
+									onClick={showAuthFormHandler}
+									className="hidden md:block"
+								>
+									register / login
+								</MyButton>
+							}
 							{
 								location.pathname !== "/" &&
 								<MyButton
