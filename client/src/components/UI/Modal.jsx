@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom';
 
-
 const portalElement = document.getElementById('modal');
 
 function Backdrop() {
@@ -10,13 +9,15 @@ function Backdrop() {
 		</div>
 	)
 }
+
 function Overlay(props) {
 	return (
-		<div id="overlay" className="absolute top-0 left-0 bottom-0 right-0 border z-[3]">
+		<div id="overlay" className="absolute top-0 left-0 bottom-0 right-0 z-[3]">
 			{props.children}
 		</ div>
 	)
 }
+
 function Modal(props) {
 	return (
 		<>

@@ -3,7 +3,11 @@
 	color:#fff;
 }
 .light{
-	background: #fff;
+	background-color: #fff;
+}
+.red{
+	background-color:#f00;
+	color:#fff;
 }
 .green{
 	background-color:#49c5b6;

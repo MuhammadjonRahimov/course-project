@@ -3,21 +3,20 @@ import MyInput from '../components/UI/MyInput';
 import Layout from '../components/UI/Layout';
 
 import { Editor } from '@tinymce/tinymce-react';
-import { useRef, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 const labelClass = "font-bold"
 
 function AddCollections() {
-	const { register, getFieldState, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onBlur", });
+	const { register, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onSubmit", });
 	const { fields: extraFields, append, remove } = useFieldArray({ control, name: "extraFields", });
-
-	console.log(getFieldState('extraFields'));
 
 	const editorRef = useRef();
 	const navigate = useNavigate();
 
+	const [isError, setIsError] = useState(false);
 
 	function addExtraFieldHandler() {
 		append({ name: '', type: '' });
@@ -25,19 +24,33 @@ function AddCollections() {
 
 	function removeExtraField(e) {
 		const index = e.target.dataset.id;
-		console.log(index);
 		if (index === 'all') {
 			remove();
 		} else remove(+index);
 	}
 
 	function formSubmit(data) {
-		console.log(data);
-		navigate(-1);
+		const numberOfTypes = data.extraFields.reduce((acc, e) => {
+			const keys = Object.keys(acc);
+			keys.forEach(key => {
+				if (key === e.type) {
+					acc[key] += 1;
+				}
+			})
+			return acc;
+		}, { number: 0, string: 0, date: 0, textarea: 0, checkbox: 0 });
+
+		const values = Object.values(numberOfTypes);
+		if (values.some(value => value > 3)) setIsError(true);
+		else {
+			setIsError(false);
+			// navigate(-1);
+			console.log(data);
+		};
 	}
 
 	return (
-		<Layout>
+		<Layout title="Add collection">
 			<div className="p-5">
 				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-[15px]">
 					<label className={labelClass} htmlFor="name">
@@ -82,14 +95,17 @@ function AddCollections() {
 						{/* {errors['user-pic'] && <p className="text-red-500">This field is required</p>} */}
 					</div>
 					<div>
-						<h2 className="my-3 font-bold text-[25px]">Add extra fields...</h2>
+						<h2 className={`my-3 font-bold text-[25px] ${isError && "text-red-500 uppercase"}`}>
+							{isError ? "Each type must be at most 3 length" : "Add extra fields"}
+						</h2>
 						{
 							extraFields.map((field, index) => (
-								<div key={field.id} className="mb-5 last:mb-0 flex items-center">
-									<MyInput {...register(`extraFields.${index}.name`, { required: true })}
+								<div key={field.id} className="mb-2 last:mb-0 flex items-center gap-2">
+									<MyInput {...register(`extraFields.${index}.name`, { required: "must be filled" })}
 										className="border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px] mr-2"
 									/>
-									<select {...register(`extraFields.${index}.type`, { required: true })}
+									{errors?.extraFields?.length > 0 && errors.extraFields[index]?.name && <p className="text-center text-red-500">{errors.extraFields[index].name.message}</p>}
+									<select {...register(`extraFields.${index}.type`, { required: "must be selected" })}
 										className="border border-[#dbe0df] border-solid placeholder:text-[#777] p-[10px] rounded-[8px] mr-2"
 									>
 										<option value="">Select a type</option>
@@ -99,10 +115,12 @@ function AddCollections() {
 										<option value="textarea">Text</option>
 										<option value="checkbox">Checkbox</option>
 									</select>
+									{errors?.extraFields?.length > 0 && errors.extraFields[index]?.type && <p className="text-center text-red-500">{errors.extraFields[index].type.message}</p>}
 									<MyButton
 										data-id={index}
 										onClick={removeExtraField}
-										className="bg-red-500 text-white px-[0] py-[0] h-auto rounded-[8px]"
+										variant="red"
+										className="h-auto px-1 py-1 rounded-[8px]"
 									>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -121,13 +139,16 @@ function AddCollections() {
 						>
 							Add a field
 						</MyButton>
-						<MyButton
-							data-id='all'
-							onClick={removeExtraField}
-							className="bg-red-500 text-white"
-						>
-							remove all fields
-						</MyButton>
+						{
+							extraFields.length > 1 &&
+							<MyButton
+								data-id='all'
+								onClick={removeExtraField}
+								variant="red"
+							>
+								remove all fields
+							</MyButton>
+						}
 					</div>
 					<MyButton type="submit" variant="dark" className="self-start">
 						save
