@@ -3,28 +3,39 @@ import MyInput from '../components/UI/MyInput';
 import Layout from '../components/UI/Layout';
 
 import { Editor } from '@tinymce/tinymce-react';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-
 
 const labelClass = "font-bold"
 
 function AddCollections() {
-	const { register, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onBlur", });
-	const { fields: extraFields, append } = useFieldArray({ control, name: "extraFields", });
+	const { register, getFieldState, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onBlur", });
+	const { fields: extraFields, append, remove } = useFieldArray({ control, name: "extraFields", });
+
+	console.log(getFieldState('extraFields'));
 
 	const editorRef = useRef();
 	const navigate = useNavigate();
 
+
 	function addExtraFieldHandler() {
 		append({ name: '', type: '' });
+	}
+
+	function removeExtraField(e) {
+		const index = e.target.dataset.id;
+		console.log(index);
+		if (index === 'all') {
+			remove();
+		} else remove(+index);
 	}
 
 	function formSubmit(data) {
 		console.log(data);
 		navigate(-1);
 	}
+
 	return (
 		<Layout>
 			<div className="p-5">
@@ -74,11 +85,11 @@ function AddCollections() {
 						<h2 className="my-3 font-bold text-[25px]">Add extra fields...</h2>
 						{
 							extraFields.map((field, index) => (
-								<div key={field.id} className="mb-5 last:mb-0">
-									<MyInput {...register(`extraFields.${index}.name`)}
+								<div key={field.id} className="mb-5 last:mb-0 flex items-center">
+									<MyInput {...register(`extraFields.${index}.name`, { required: true })}
 										className="border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px] mr-2"
 									/>
-									<select {...register(`extraFields.${index}.type`)}
+									<select {...register(`extraFields.${index}.type`, { required: true })}
 										className="border border-[#dbe0df] border-solid placeholder:text-[#777] p-[10px] rounded-[8px] mr-2"
 									>
 										<option value="">Select a type</option>
@@ -88,17 +99,36 @@ function AddCollections() {
 										<option value="textarea">Text</option>
 										<option value="checkbox">Checkbox</option>
 									</select>
+									<MyButton
+										data-id={index}
+										onClick={removeExtraField}
+										className="bg-red-500 text-white px-[0] py-[0] h-auto rounded-[8px]"
+									>
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+											<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+										</svg>
+									</MyButton>
 								</div>
 							))
 						}
 					</div>
-					<MyButton
-						onClick={addExtraFieldHandler}
-						variant="dark"
-						className="self-start"
-					>
-						Add field
-					</MyButton>
+					<div className="flex items-center gap-2 self-start">
+						<MyButton
+							onClick={addExtraFieldHandler}
+							variant="dark"
+							className="disabled:opacity-[0.8] disabled:cursor-not-allowed"
+							disabled={extraFields.length >= 15}
+						>
+							Add a field
+						</MyButton>
+						<MyButton
+							data-id='all'
+							onClick={removeExtraField}
+							className="bg-red-500 text-white"
+						>
+							remove all fields
+						</MyButton>
+					</div>
 					<MyButton type="submit" variant="dark" className="self-start">
 						save
 					</MyButton>
