@@ -44,7 +44,7 @@ function AppRouter() {
 	return (
 		<IsShownContext.Provider value={{ showSidebar, setShowSidebar, isAuth, showAuthForm, showAuthFormHandler, hideAuthFormHandler }}>
 			<Routes>
-				{publicRoutes.map((route, index) => <Route key={index} path={route.path} element={route.element} />)}
+				{publicRoutes.map((route) => <Route key={route.path} path={route.path} element={route.element} />)}
 			</Routes>
 		</IsShownContext.Provider>
 	);
