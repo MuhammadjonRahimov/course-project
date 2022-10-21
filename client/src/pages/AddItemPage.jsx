@@ -15,7 +15,7 @@ const scheme = yup.object().shape({
 	tags: yup.array().of(yup.string())
 });
 
-
+const ab = 'Hello';
 
 function AddItemPage() {
 
