@@ -50,11 +50,10 @@ function AddCollections() {
 			console.log(data);
 		};
 	}
-
 	return (
 		<Layout title="Add collection">
-			<div className="p-5">
-				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-[15px]">
+			<div className="p-5 max-w-[900px] mx-auto">
+				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-y-[15px]">
 					<label className={labelClass} htmlFor="name">
 						Name:
 						<MyInput
@@ -62,7 +61,7 @@ function AddCollections() {
 							placeholder="Collection name" id="name"
 							{...register("name", { required: true })}
 						/>
-						{errors['name'] && <p className="text-red-500">This field is required</p>}
+						{errors['name'] && <p className="font-normal text-red-500">This field is required</p>}
 					</label>
 					<label className={labelClass} >
 						Description:
@@ -72,7 +71,7 @@ function AddCollections() {
 							{...register('desc', { required: true })}
 							onChange={e => setValue('desc', e.level.content)}
 						/>
-						{errors['desc'] && <p className="text-red-500">This field is required</p>}
+						{errors['desc'] && <p className="font-normal text-red-500">This field is required</p>}
 					</label>
 					<label className={labelClass} htmlFor="topic">
 						Topic:
@@ -81,7 +80,7 @@ function AddCollections() {
 							placeholder="Topic name" id="topic"
 							{...register("topic", { required: true })}
 						/>
-						{errors['topic'] && <p className="text-red-500">This field is required</p>}
+						{errors['topic'] && <p className="font-normal text-red-500">This field is required</p>}
 					</label>
 					<div className="sm:flex sm:items-center">
 						<label htmlFor="user-pic" className="cursor-pointer">
@@ -93,8 +92,9 @@ function AddCollections() {
 							type="file"
 							id="user-pic"
 							{...register("user-pic", { required: true })}
+							className="hidden"
 						/>
-						{/* {errors['user-pic'] && <p className="text-red-500">This field is required</p>} */}
+						{errors['user-pic'] && <p className="text-red-500">This field is required</p>}
 					</div>
 					<div>
 						<h2 className={`my-3 font-bold text-[25px] ${isError && "text-red-500 uppercase"}`}>
@@ -102,7 +102,10 @@ function AddCollections() {
 						</h2>
 						{
 							extraFields.map((field, index) => (
-								<div key={field.id} className="mb-2 last:mb-0 flex items-center gap-2">
+								<div
+									key={field.id}
+									className="mb-2 last:mb-0 flex flex-col gap-2 lg:flex-row lg:items-center bg-[#dbe0df] p-2 rounded-[8px] lg:bg-transparent lg:p-0 lg:rounded-none"
+								>
 									<MyInput {...register(`extraFields.${index}.name`, { required: "must be filled" })}
 										className="border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px] mr-2"
 									/>
@@ -122,7 +125,7 @@ function AddCollections() {
 										data-id={index}
 										onClick={removeExtraField}
 										variant="red"
-										className="h-auto px-1 py-1 rounded-[8px]"
+										className="min-h-0 px-[5px] py-1 rounded-[20px] -order-1 self-end lg:order-[0] lg:self-center"
 									>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
