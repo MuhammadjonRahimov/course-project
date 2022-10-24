@@ -9,10 +9,12 @@ import MyButton from '../components/UI/button/MyButton';
 
 
 const scheme = yup.object().shape({
-	username: yup.string().trim().required('username be filled'),
-	password: yup.string().trim().required('password be filled'),
-	email: yup.string().trim().required('email be filled'),
-	tags: yup.array().of(yup.string())
+	name: yup.string().trim().required('must be filled'),
+	role: yup.string().trim().required('must be filled'),
+	type: yup.string().trim().required('must be filled'),
+	tags: yup.array().of(yup.string()),
+	sth: yup.string().trim().required('must be filled'),
+	// "check-1":yup.string().trim().required('must be checked')
 });
 
 const ab = 'Hello';
@@ -67,6 +69,7 @@ function AddItemPage() {
 							{...register("name", { required: true })}
 						/>
 					</label>
+					{errors.name && <p className="text-red-500">{errors.name.message}</p>}
 					<label htmlFor="tag" className="font-bold">
 						Tag name:
 						<div className="flex flex-wrap gap-4 bg-white p-5 border border-[#dbe0df] border-solid rounded-[8px]">
@@ -81,7 +84,7 @@ function AddItemPage() {
 							)}
 							{contents.map((content, index) =>
 								<div className="flex">
-									<span key={content + index} className="rounded-[30px] p-2 bg-[rgb(20,21,21)] text-white">
+									<span key={index} className="rounded-[30px] p-2 bg-[rgb(20,21,21)] text-white">
 										{content}
 									</span>
 									<sup
@@ -98,50 +101,72 @@ function AddItemPage() {
 								id="tag"
 								className="flex-1 placeholder:text-[#dbe0d] "
 								placeholder="Add tag"
+							// {...register("tags", { required: true })}
 							/>
 						</div>
 					</label>
+					{/* {errors.tags && <p className="text-red-500">{errors.tags.message}</p>} */}
 					<h3 className="font-bold text-[25px]">Extra Fields</h3>
 					<label className="font-bold" htmlFor="role">
 						Role:
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder="Role name" id="role"
-							{...register("name", { required: true })}
+							{...register("role", { required: true })}
 						/>
 					</label>
+					{errors.role && <p className="text-red-500">{errors.role.message}</p>}
 					<label className="font-bold" htmlFor="type">
 						Type:
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder="Type name" id="type"
-							{...register("name", { required: true })}
+							{...register("type", { required: true })}
 						/>
 					</label>
+					{errors.type && <p className="text-red-500">{errors.type.message}</p>}
 					<label className="font-bold" htmlFor="sth">
 						Sth:
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder="Sth" id="sth"
-							{...register("name", { required: true })}
+							{...register("sth", { required: true })}
 						/>
 					</label>
+					{errors.sth && <p className="text-red-500">{errors.sth.message}</p>}
+					<h3 className="font-bold text-[25px]">Colors</h3>
 					<div className="flex gap-3">
-						<label htmlFor='red'>
+						<label htmlFor='check-1'>
 							Red
 						</label>
-						<MyInput id="red" value="red" type="checkbox" className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
-						<label htmlFor="green">
+						<MyInput
+							{...register("check-1", { required: true })}
+							id="check-1"
+							value="check-1"
+							type="checkbox"
+							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]"
+						/>
+						<label htmlFor="check-2">
 							Green
 						</label>
-						<MyInput id="green" value="green" type="checkbox" className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
-						<label htmlFor="yellow">
+						<MyInput
+							{...register("check-2", { required: true })}
+							id="check-2"
+							value="check-2"
+							type="checkbox"
+							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
+						<label htmlFor="check-3">
 							Yellow
 						</label>
-						<MyInput id="yellow" value="yellow" type="checkbox" className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
+						<MyInput
+							{...register("check-3", { required: true })}
+							id="check-3"
+							value="check-3"
+							type="checkbox"
+							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
 					</div>
-					<MyButton type="submit" variant="dark" className="self-start">
-						save
+					<MyButton type="submit" variant="dark" className="self-start my-3">
+						add item
 					</MyButton>
 				</form>
 			</div>
