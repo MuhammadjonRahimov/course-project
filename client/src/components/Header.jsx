@@ -5,6 +5,7 @@ import MyInput from './UI/MyInput';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { IsShownContext } from '../context';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { locale } from '../dates/locale';
 
 function Header({ title }) {
 	const location = useLocation();
@@ -41,7 +42,7 @@ function Header({ title }) {
 				{searching ?
 					<>
 						<MyForm className="flex-1">
-							<MyInput placeholder="Search for collections" className="w-full flex-1 bg-transparent" ref={focusRef} />
+							<MyInput placeholder={locale.search} className="w-full flex-1 bg-transparent" ref={focusRef} />
 						</MyForm>
 						<MyButton variant="dark" onClick={searchHandler}>
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -63,14 +64,14 @@ function Header({ title }) {
 									variant="dark"
 									className="hidden md:block"
 								>
-									log out
+									{locale['log out']}
 								</MyButton> :
 								<MyButton
 									variant="dark"
 									onClick={showAuthFormHandler}
 									className="hidden md:block"
 								>
-									register / login
+									{locale['register-login']}
 								</MyButton>
 							}
 							{
@@ -79,7 +80,7 @@ function Header({ title }) {
 									variant="dark"
 									onClick={goHome}
 								>
-									back
+									{locale.back}
 								</MyButton>
 							}
 						</div>

@@ -8,6 +8,8 @@ import { loginInputDates } from "../dates/login-input-dates";
 import { registerInputDates } from "../dates/register-input-dates";
 import MyForm from "./UI/MyForm";
 
+import { locale } from '../dates/locale';
+
 function RegisterOrLogin() {
 	const { hideAuthFormHandler } = useContext(IsShownContext);
 	const [isAuth, setIsAuth] = useState(false);
@@ -29,8 +31,8 @@ function RegisterOrLogin() {
 				{isAuth ?
 					<>
 						<div className={`flex justify-between items-center mb-[25px] w-[250px] sm:w-[430px] gap-[15px] ${textStyles}`}>
-							<p className="font-bold mr-[10px] ">Are you a member ?</p>
-							<button onClick={authHandler} className=" text-[#49c5b1] font-bold">Login now</button>
+							<p className="font-bold mr-[10px] ">{locale.member}</p>
+							<button onClick={authHandler} className=" text-[#49c5b1] font-bold">{locale.login}</button>
 						</div>
 						<MyForm className='flex flex-col gap-y-[20px]'>
 							{registerInputDates.map(data =>
@@ -38,13 +40,13 @@ function RegisterOrLogin() {
 									className="border border-[#dbe0df] placeholder:text-[#dbe0df] py-[10px]"
 									placeholder={data.placeholder} />
 							)}
-							<MyButton variant="green">register now</MyButton>
+							<MyButton variant="green">{locale.register}</MyButton>
 						</MyForm>
 					</> :
 					<>
 						<div className={`flex justify-between items-center mb-[25px] w-[250px] sm:w-[430px] gap-[15px] ${textStyles}`}>
-							<p className="font-bold mr-[10px]">Not a member yet?</p>
-							<button onClick={authHandler} className=" text-[#49c5b1] font-bold">Register now</button>
+							<p className="font-bold mr-[10px]">{locale['not-member']}</p>
+							<button onClick={authHandler} className=" text-[#49c5b1] font-bold">{locale.register}</button>
 						</div>
 						<MyForm className='flex flex-col gap-y-[20px]'>
 							{loginInputDates.map(data =>
@@ -52,7 +54,7 @@ function RegisterOrLogin() {
 									className="border border-[#dbe0df] border-solid placeholder:text-[#dbe0df] py-[10px]"
 									placeholder={data.placeholder} type={data.type} />
 							)}
-							<MyButton variant="green">login now</MyButton>
+							<MyButton variant="green">{locale.login}</MyButton>
 						</MyForm>
 					</>
 				}

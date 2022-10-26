@@ -3,11 +3,17 @@ import { IsShownContext } from '../context';
 import { Route, Routes } from 'react-router-dom';
 
 import { publicRoutes, privateRoutes } from '../routes';
+import { locale } from '../dates/locale';
 
 function AppRouter() {
 	const [showSidebar, setShowSidebar] = useState(false);
 	const [showAuthForm, setShowAuthForm] = useState(false);
 	const [isAuth, setIsAuth] = useState(false);
+	const [lang, setLang] = useState('en');
+
+	useEffect(() => {
+		locale.setLanguage(lang);
+	}, [lang]);
 
 	useEffect(() => {
 		document.addEventListener('keydown', e => {
@@ -32,6 +38,10 @@ function AppRouter() {
 		return () => document.removeEventListener('click', null);
 	}, []);
 
+	function languageHandler() {
+		setLang(lang === 'en' ? 'uz' : 'en');
+	}
+
 	function showAuthFormHandler() {
 		setShowAuthForm(true);
 		document.body.style.overflow = "hidden";
@@ -42,7 +52,18 @@ function AppRouter() {
 		document.body.style.overflow = "auto";
 	}
 	return (
-		<IsShownContext.Provider value={{ showSidebar, setShowSidebar, isAuth, showAuthForm, showAuthFormHandler, hideAuthFormHandler }}>
+		<IsShownContext.Provider
+			value={{
+				showSidebar,
+				setShowSidebar,
+				isAuth,
+				showAuthForm,
+				showAuthFormHandler,
+				hideAuthFormHandler,
+				lang,
+				languageHandler,
+			}}
+		>
 			<Routes>
 				{publicRoutes.map((route) => <Route key={route.path} path={route.path} element={route.element} />)}
 			</Routes>

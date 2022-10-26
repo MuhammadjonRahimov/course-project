@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { locale } from '../dates/locale';
 
 function Card(props) {
 	const [counter, setCounter] = useState(0);
 	return (
 		<Link to="/item">
 			<div className="bg-black uppercase grid place-items-center text-white  min-h-[150px]">
-				item
+				{locale.item}
 			</div>
 			<div className=" flex items-center justify-between p-2  bg-[#f4f7f6]">
 				<div>
-					<h4>Author: <span>{props.data.author}</span></h4>
-					<h5>Published:{props.data.time.toLocaleDateString()}</h5>
-					<h5>Collection: <span>{props.data.collection}</span></h5>
+					<h4>{locale.author}: <span>{props.data.author}</span></h4>
+					<h5>{locale.published}:{props.data.time.toLocaleDateString()}</h5>
+					<h5>{locale.collection}: <span>{props.data.collection}</span></h5>
 				</div>
 				<div className="flex items-center gap-[5px]">
 					<button >

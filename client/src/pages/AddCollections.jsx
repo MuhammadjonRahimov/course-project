@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { topics } from '../dates/topics';
 
-
-
 const labelClass = "font-bold"
 
 function AddCollections() {

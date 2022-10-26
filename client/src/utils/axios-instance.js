@@ -9,3 +9,9 @@ export const http = axios.create({
 		authorization: `Bearer ${token}`
 	}
 })
+
+// async function getResponse() {
+	// 	const response = await axios.get('https://3d0d-195-158-15-110.eu.ngrok.io');
+	// 	console.log(response);
+	// }
+	// getResponse();
