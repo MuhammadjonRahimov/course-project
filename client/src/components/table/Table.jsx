@@ -38,7 +38,6 @@ function Table() {
 							<tr {...row.getRowProps()}>
 								{
 									row.cells.map((cell) => {
-										console.log(cell);
 										return <td {...cell.getCellProps()} data-label={cell.column.Header}>
 											{cell.render('Cell')}
 										</td>

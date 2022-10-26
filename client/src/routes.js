@@ -7,7 +7,7 @@ import ItemPage from "./pages/ItemPage"
 
 export const publicRoutes = [
 	{ path: '/', element: <Home /> },
-	{ path: '/single-item', element: <ItemPage /> },
+	{ path: '/item', element: <ItemPage /> },
 	{ path: '/collections', element: <Collections /> },
 	{ path: '/collection/new', element: <AddCollections /> },
 	{ path: '/item/new', element: <AddItemPage /> },

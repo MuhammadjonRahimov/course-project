@@ -35,7 +35,7 @@ function RegisterOrLogin() {
 						<MyForm className='flex flex-col gap-y-[20px]'>
 							{registerInputDates.map(data =>
 								<MyInput key={data.placeholder}
-									className="border border-[#dbe0df] border-solid placeholder:text-[#dbe0df] py-[10px]"
+									className="border border-[#dbe0df] placeholder:text-[#dbe0df] py-[10px]"
 									placeholder={data.placeholder} />
 							)}
 							<MyButton variant="green">register now</MyButton>

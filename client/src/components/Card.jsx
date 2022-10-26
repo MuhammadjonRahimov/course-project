@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Card(props) {
 	const [counter, setCounter] = useState(0);
 	return (
-		<Link to="/single-item">
+		<Link to="/item">
 			<div className="bg-black uppercase grid place-items-center text-white  min-h-[150px]">
 				item
 			</div>

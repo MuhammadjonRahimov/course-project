@@ -8,11 +8,8 @@ function ItemPage() {
 	return (
 		<>
 			<Layout title="Item">
-				<div className="trapezoid">
-
-				</div>
 				<div className="py-5">
-					<div className="mx-auto max-w-[900px] px-5">
+					<div className="mx-auto max-w-[900px]">
 						<div className="max-w-[500px] mx-auto">
 							{singleDate.map((data, index) => <Card key={index} data={data} />)}
 						</div>

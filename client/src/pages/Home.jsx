@@ -5,7 +5,6 @@ import { tags } from "../dates/tag-dates";
 import Tags from '../components/Tags';
 
 function Home() {
-	const paginationArray = [1, 2, 3, 4, 5];
 	return (
 		<Layout title="Collections">
 			<Section title='Last updates ' dates={cardDates} />

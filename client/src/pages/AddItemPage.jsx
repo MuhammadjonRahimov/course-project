@@ -14,7 +14,6 @@ const scheme = yup.object().shape({
 	type: yup.string().trim().required('must be filled'),
 	tags: yup.array().of(yup.string()),
 	sth: yup.string().trim().required('must be filled'),
-	// "check-1":yup.string().trim().required('must be checked')
 });
 
 const ab = 'Hello';

@@ -8,8 +8,8 @@
 	box-sizing:inherit;
 }
 button, input, textarea, select {
-	outline:none;
-	border:none;
+	/* outline:none; */
+	/* border:none; */
 	display: inline-block;
 }
 html, body{

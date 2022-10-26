@@ -1,11 +1,14 @@
 import MyButton from '../components/UI/button/MyButton';
 import MyInput from '../components/UI/MyInput';
 import Layout from '../components/UI/Layout';
+import MySelect from '../components/UI/MySelect';
 
 import { Editor } from '@tinymce/tinymce-react';
 import { useRef, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+
+import { topics } from '../dates/topics';
 
 
 
@@ -74,13 +77,12 @@ function AddCollections() {
 						{errors['desc'] && <p className="font-normal text-red-500">This field is required</p>}
 					</label>
 					<label className={labelClass} htmlFor="topic">
-						Topic:
-						<MyInput
-							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
-							placeholder="Topic name" id="topic"
-							{...register("topic", { required: true })}
+						<MySelect
+							defaultValue="Select a topic"
+							data={topics}
+							register={register.bind(null, 'topic')}
+							error={errors.topic && 'This field is required'}
 						/>
-						{errors['topic'] && <p className="font-normal text-red-500">This field is required</p>}
 					</label>
 					<div className="sm:flex sm:items-center">
 						<label htmlFor="user-pic" className="cursor-pointer">
@@ -125,7 +127,7 @@ function AddCollections() {
 										data-id={index}
 										onClick={removeExtraField}
 										variant="red"
-										className="min-h-0 px-[5px] py-1 rounded-[20px] -order-1 self-end lg:order-[0] lg:self-center"
+										className="min-h-[0] px-[5px] py-1 rounded-[20px] -order-1 self-end lg:order-[0] lg:self-center"
 									>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
