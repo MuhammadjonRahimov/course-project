@@ -5,9 +5,6 @@ import Header from '../Header';
 import { useContext } from 'react';
 import { IsShownContext } from '../../context';
 
-// import { locale } from '../../dates/locale';
-// console.log(locale);
-
 function Layout({ children, title }) {
 	const { showAuthForm, showSidebar } = useContext(IsShownContext);
 	return (
@@ -15,7 +12,9 @@ function Layout({ children, title }) {
 			{showAuthForm && <RegisterOrLogin />}
 			{showSidebar && <Sidebar />}
 			<Header title={title} />
-			{children}
+			<div className="p-2">
+				{children}
+			</div>
 		</>
 	)
 }

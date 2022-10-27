@@ -1,8 +1,9 @@
 import Layout from '../components/UI/Layout';
 import Card from '../components/Card';
 import Comment from '../components/Comment';
-import { singleDate } from '../dates/card-dates';
-import { commentDates } from '../dates/comment-dates';
+import { singleDate } from '../data/card-dates';
+import { commentDates } from '../data/comment-dates';
+import { locale } from '../data/locale';
 
 function ItemPage() {
 	return (
@@ -14,6 +15,7 @@ function ItemPage() {
 							{singleDate.map((data, index) => <Card key={index} data={data} />)}
 						</div>
 						<div className="mt-[100px]">
+							<h2 className="mb-[30px] font-bold text-[30px]">{locale.comment}</h2>
 							{commentDates.map((comment, index) => <Comment key={index} comment={comment} />)}
 						</div>
 					</div>

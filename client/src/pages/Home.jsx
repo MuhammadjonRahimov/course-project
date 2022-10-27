@@ -1,13 +1,13 @@
 import Layout from "../components/UI/Layout";
 import Section from "../components/section/Section";
-import cardDates from "../dates/card-dates";
-import { tags } from "../dates/tag-dates";
+import cardDates from "../data/card-dates";
+import { tags } from "../data/tag-dates";
 import Tags from '../components/Tags';
-import { locale } from "../dates/locale";
+import { locale } from "../data/locale";
 
 function Home() {
 	return (
-		<Layout title={locale['header-title']}>
+		<Layout title={locale['home-title']}>
 			<Section title={locale['last-updates']} dates={cardDates} />
 			<Section title={locale['top-big']} dates={cardDates} />
 			<Tags dates={tags} />

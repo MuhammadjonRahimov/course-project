@@ -3,7 +3,7 @@ import { IsShownContext } from '../context';
 import { Route, Routes } from 'react-router-dom';
 
 import { publicRoutes, privateRoutes } from '../routes';
-import { locale } from '../dates/locale';
+import { locale } from '../data/locale';
 
 function AppRouter() {
 	const [showSidebar, setShowSidebar] = useState(false);

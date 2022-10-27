@@ -1,15 +1,16 @@
 import { format } from 'date-fns';
 import MyButton from '../components/UI/button/MyButton';
+import { locale } from '../data/locale';
 
 export const COLUMNS = [
-	{ Header: 'Id', Footer: 'Id', accessor: 'id' },
-	{ Header: 'First Name', Footer: 'First Name', accessor: 'first_name', },
-	{ Header: 'Last Name', Footer: 'Last Name', accessor: 'last_name', },
-	{ Header: 'Date of Birth', Footer: 'Date of Birth', accessor: 'date_of_birth', Cell: ({ value }) => { return format(new Date(value), 'dd/MM/yyyy') } },
-	{ Header: 'Country', Footer: 'Country', accessor: 'country', },
-	{ Header: 'Phone', Footer: 'Phone', accessor: 'phone', },
+	{ Header: locale.id, Footer: locale.id, accessor: 'id' },
+	{ Header: locale.firstname, Footer: locale.firstname, accessor: 'first_name', },
+	{ Header: locale.lastname, Footer: locale.lastname, accessor: 'last_name', },
+	{ Header: locale.date, Footer: locale.date, accessor: 'date_of_birth', Cell: ({ value }) => { return format(new Date(value), 'dd/MM/yyyy') } },
+	{ Header: locale.country, Footer: locale.country, accessor: 'country', },
+	{ Header: locale.phone, Footer: locale.phone, accessor: 'phone', },
 	{
-		id: "actions", Header: 'Actions', Footer: 'Actions', accessor: (row) => {
+		id: "actions", Header: locale.actions, Footer: locale.actions, accessor: (row) => {
 			return <>
 				<MyButton>
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

@@ -4,7 +4,7 @@ import Modal from './UI/Modal';
 import { useState, useContext } from 'react';
 import { IsShownContext } from '../context';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { locale } from '../dates/locale';
+import { locale } from '../data/locale';
 
 function Sidebar() {
 	const location = useLocation();

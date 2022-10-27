@@ -4,11 +4,11 @@ import MyInput from "./UI/MyInput";
 
 import { useState, useContext } from 'react';
 import { IsShownContext } from "../context";
-import { loginInputDates } from "../dates/login-input-dates";
-import { registerInputDates } from "../dates/register-input-dates";
+import { loginInputDates } from "../data/login-input-dates";
+import { registerInputDates } from "../data/register-input-dates";
 import MyForm from "./UI/MyForm";
 
-import { locale } from '../dates/locale';
+import { locale } from '../data/locale';
 
 function RegisterOrLogin() {
 	const { hideAuthFormHandler } = useContext(IsShownContext);
@@ -37,7 +37,7 @@ function RegisterOrLogin() {
 						<MyForm className='flex flex-col gap-y-[20px]'>
 							{registerInputDates.map(data =>
 								<MyInput key={data.placeholder}
-									className="border border-[#dbe0df] placeholder:text-[#dbe0df] py-[10px]"
+									className="border border-[#dbe0df] border-solid placeholder:text-[#dbe0df] py-[10px]"
 									placeholder={data.placeholder} />
 							)}
 							<MyButton variant="green">{locale.register}</MyButton>

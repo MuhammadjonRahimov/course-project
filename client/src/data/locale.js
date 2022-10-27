@@ -4,18 +4,18 @@ export const locale = new LocalizedStrings({
 	/*	EN */
 	en: {
 		// header
-		'header-title': 'Collections',
+		'home-title': 'Collections',
 		'register-login': 'Register/Login',
 		back: "Back",
 		search: "Search for collections",
 		'log out': "Log out",
 
 		// registration
-		member: "Are you a member ?",
+		register: "Register Now",
+		member: "Are you member ?",
 		username: "Username",
 		email: "Email",
 		password: "Password",
-		register: "Register Now",
 
 		// login
 		'not-member': "Not a member yet",
@@ -32,15 +32,17 @@ export const locale = new LocalizedStrings({
 		collection: 'Collection',
 
 		// comments
-		comments: 'Comments',
+		comment: 'Comments',
 
 		// add-collection
-		'add-collection': "Add collection",
-		name: "Name",
 		'collection-name': "Collection name",
+		'add-col-name': "Name",
 		desc: "Description",
+		topic: 'Select a topic',
 		extra: "Add extra fields",
+		'extra-limit': "Each type must be at most 3 length",
 		'add-field': "Add field",
+		'remove-all': "Remove all fields",
 		save: "save",
 		topics: [
 			'Art or Design',
@@ -63,14 +65,17 @@ export const locale = new LocalizedStrings({
 			'Nature',
 			'Chairs & Stools'
 		],
+		'field-empty-option': "Select a type",
 
 		// add-item
-		'add-item': "Add item",
+		'add-item-name': 'Name',
 		'tag-name': "Tag name",
+		'extra-fields': "Extra fields",
 		role: 'Role',
 		type: 'type',
 		'colors-title': 'Colors',
 		colors: ['Red', 'Green', 'Yellow'],
+		'add-item': "Add item",
 
 		// action
 		id: "Id",
@@ -80,12 +85,16 @@ export const locale = new LocalizedStrings({
 		country: "Country",
 		phone: "Phone",
 		actions: "Actions",
+
+		// validation
+		required: 'This field is required',
+		selected: 'Must be selected',
 	},
 
 	/*	UZ */
 	uz: {
 		// header
-		'header-title': "To'plamlar",
+		'home-title': "To'plamlar",
 		'register-login': "Ro'yhatdan o'tish / Kirish",
 		back: "Orqaga",
 		search: "To'plamlarni qidirish",
@@ -93,10 +102,10 @@ export const locale = new LocalizedStrings({
 
 		// registration
 		member: "Azomisiz ?",
+		register: "Hozir ro'yxatdan o'ting",
 		username: "Foydalanuvchi nomi",
 		email: "Elektro'n po'chta",
 		password: "Parol",
-		register: "Hozir ro'yxatdan o'ting",
 
 		// login
 		'not-member': "Azo emasmisiz ?",
@@ -113,15 +122,17 @@ export const locale = new LocalizedStrings({
 		collection: "To'plamlar",
 
 		// comments
-		comments: 'Izohlar',
+		comment: 'Izohlar',
 
 		// add-collection
-		'add-collection': "To'plam qo'shish",
-		name: "Ism",
-		'collection-name': "To'plam nome",
+		'collection-name': "To'plam nomi",
+		'add-col-name': "Nom",
 		desc: "Izox",
-		extra: "Qo'shimcha maydonlar qo'shing",
-		'add-field': "Maydon qo'shish",
+		topic: "Mavzu tanlang",
+		extra: "Qo'shimcha qatorr qo'shing",
+		'extra-limit': "Har bir turning uzunligi 3 ta dan oshmasligi kerak",
+		'add-field': "Qator qo'shish",
+		'remove-all': "Barcha qatorni o'chirish",
 		save: "Saqlash",
 		topics: [
 			"Sanat yoki Dizayn",
@@ -144,14 +155,17 @@ export const locale = new LocalizedStrings({
 			"Tabiat",
 			"Stullar va kursilar",
 		],
+		'field-empty-option': "Turini tanlang",
 
 		// add-item
-		'add-item': "Element qo'shish",
-		'tag-name': "Element nomi",
+		'add-item-name': 'Nom',
+		'tag-name': "Tag nomi",
+		'extra-fields': "Qo'shimcha qatorlar",
 		role: "Ro'li",
 		type: 'Turi',
 		'colors-title': "Ranglar",
 		colors: ["Qizil", "Yashil", "Sariq"],
+		'add-item': "Item ni qo'shish",
 
 		// action
 		id: "Id",
@@ -161,31 +175,9 @@ export const locale = new LocalizedStrings({
 		country: "Mamlakat",
 		phone: "Shaxsiy telefo'n raqam",
 		actions: "Amallar",
+
+		// validation
+		required: "Ushbu qator to'ldirilishi shart",
+		selected: "Tanlanishi shart",
 	}
 });
-
-// function languageChangeHandler() {
-// 	setLang(lang === "uz" ? "en" : "uz")
-// }
-
-// <>
-// 	<h1>
-// 		{strings.how}
-// 	</h1>
-// 	<button
-// 		onClick={languageChangeHandler}
-// 		className="bg-blue-400 w-auto p-5 self-start"
-// 	>
-// 		change
-// 	</button>
-// </>
-
-
-
-// const [lang, setLang] = useState("uz")
-
-// useEffect(() => {
-
-// 	strings.setLanguage(lang)
-
-// }, [lang])

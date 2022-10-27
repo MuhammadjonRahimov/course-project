@@ -1,7 +1,7 @@
 import styles from './Table.module.css';
 
-import { COLUMNS } from '../../dates/columns';
-import MOCK_DATA from '../../dates/MOCK_DATA.json'
+import { COLUMNS } from '../../data/columns';
+import MOCK_DATA from '../../data/MOCK_DATA.json'
 
 import { useTable } from 'react-table';
 import { useMemo } from 'react';

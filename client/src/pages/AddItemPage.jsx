@@ -6,14 +6,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Layout from '../components/UI/Layout';
 import MyInput from '../components/UI/MyInput';
 import MyButton from '../components/UI/button/MyButton';
+import { locale } from '../data/locale';
 
 
 const scheme = yup.object().shape({
-	name: yup.string().trim().required('must be filled'),
-	role: yup.string().trim().required('must be filled'),
-	type: yup.string().trim().required('must be filled'),
+	name: yup.string().trim().required(locale.required),
+	role: yup.string().trim().required(locale.required),
+	type: yup.string().trim().required(locale.required),
 	tags: yup.array().of(yup.string()),
-	sth: yup.string().trim().required('must be filled'),
+	sth: yup.string().trim().required(locale.required),
 });
 
 const ab = 'Hello';
@@ -61,18 +62,18 @@ function AddItemPage() {
 			<div className="p-5 w-[90%] md:w-[700px] lg:w-[900px] mx-auto my-5">
 				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-y-[15px]">
 					<label className="font-bold" htmlFor="name">
-						Name:
+						{locale['add-item-name']}
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
-							placeholder="Collection name" id="name"
+							placeholder={locale['collection-name']} id="name"
 							{...register("name", { required: true })}
 						/>
 					</label>
 					{errors.name && <p className="text-red-500">{errors.name.message}</p>}
 					<label htmlFor="tag" className="font-bold">
-						Tag name:
+						{locale['tag-name']}
 						<div className="flex flex-wrap gap-4 bg-white p-5 border border-[#dbe0df] border-solid rounded-[8px]">
-							{tags.map((tag, index) =>
+							{tags.map((_, index) =>
 								<input
 									type="text"
 									key={index}
@@ -105,9 +106,9 @@ function AddItemPage() {
 						</div>
 					</label>
 					{/* {errors.tags && <p className="text-red-500">{errors.tags.message}</p>} */}
-					<h3 className="font-bold text-[25px]">Extra Fields</h3>
+					<h3 className="font-bold text-[25px]">{locale['extra-fields']}</h3>
 					<label className="font-bold" htmlFor="role">
-						Role:
+						{locale.role}
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder="Role name" id="role"
@@ -116,7 +117,7 @@ function AddItemPage() {
 					</label>
 					{errors.role && <p className="text-red-500">{errors.role.message}</p>}
 					<label className="font-bold" htmlFor="type">
-						Type:
+						{locale.type}
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder="Type name" id="type"
@@ -124,19 +125,10 @@ function AddItemPage() {
 						/>
 					</label>
 					{errors.type && <p className="text-red-500">{errors.type.message}</p>}
-					<label className="font-bold" htmlFor="sth">
-						Sth:
-						<MyInput
-							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
-							placeholder="Sth" id="sth"
-							{...register("sth", { required: true })}
-						/>
-					</label>
-					{errors.sth && <p className="text-red-500">{errors.sth.message}</p>}
-					<h3 className="font-bold text-[25px]">Colors</h3>
+					<h3 className="font-bold text-[25px]">{locale['colors-title']}</h3>
 					<div className="flex gap-3">
 						<label htmlFor='check-1'>
-							Red
+							{locale.colors.at(0)}
 						</label>
 						<MyInput
 							{...register("check-1", { required: true })}
@@ -146,7 +138,7 @@ function AddItemPage() {
 							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]"
 						/>
 						<label htmlFor="check-2">
-							Green
+							{locale.colors.at(1)}
 						</label>
 						<MyInput
 							{...register("check-2", { required: true })}
@@ -155,7 +147,7 @@ function AddItemPage() {
 							type="checkbox"
 							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
 						<label htmlFor="check-3">
-							Yellow
+							{locale.colors.at(-1)}
 						</label>
 						<MyInput
 							{...register("check-3", { required: true })}
@@ -165,7 +157,7 @@ function AddItemPage() {
 							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
 					</div>
 					<MyButton type="submit" variant="dark" className="self-start my-3">
-						add item
+						{locale['add-item']}
 					</MyButton>
 				</form>
 			</div>

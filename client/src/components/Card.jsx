@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { locale } from '../dates/locale';
+import { locale } from '../data/locale';
 
 function Card(props) {
 	const [counter, setCounter] = useState(0);
@@ -27,5 +27,4 @@ function Card(props) {
 		</Link>
 	)
 }
-
 export default Card;

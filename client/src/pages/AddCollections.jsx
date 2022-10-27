@@ -8,7 +8,8 @@ import { useRef, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { topics } from '../dates/topics';
+import { topics } from '../data/topics';
+import { locale } from '../data/locale';
 
 const labelClass = "font-bold"
 
@@ -56,30 +57,30 @@ function AddCollections() {
 			<div className="p-5 max-w-[900px] mx-auto">
 				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-y-[15px]">
 					<label className={labelClass} htmlFor="name">
-						Name:
+						{locale['add-col-name']}
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
-							placeholder="Collection name" id="name"
+							placeholder={locale['collection-name']} id="name"
 							{...register("name", { required: true })}
 						/>
-						{errors['name'] && <p className="font-normal text-red-500">This field is required</p>}
+						{errors['name'] && <p className="font-normal text-red-500">{locale.required}</p>}
 					</label>
 					<label className={labelClass} >
-						Description:
+						{locale.desc}
 						<Editor
 							apiKey='87sdhktm3lv6ev797loxuebuzcbv97w0kdrofgwbujanwogv'
 							onInit={(evt, editor) => editorRef.current = editor}
 							{...register('desc', { required: true })}
 							onChange={e => setValue('desc', e.level.content)}
 						/>
-						{errors['desc'] && <p className="font-normal text-red-500">This field is required</p>}
+						{errors['desc'] && <p className="font-normal text-red-500">{locale.required}</p>}
 					</label>
 					<label className={labelClass} htmlFor="topic">
 						<MySelect
-							defaultValue="Select a topic"
-							data={topics}
+							defaultValue={locale.topic}
+							data={locale.topics}
 							register={register.bind(null, 'topic')}
-							error={errors.topic && 'This field is required'}
+							error={errors.topic && locale.required}
 						/>
 					</label>
 					<div className="sm:flex sm:items-center">
@@ -94,11 +95,11 @@ function AddCollections() {
 							{...register("user-pic", { required: true })}
 							className="hidden"
 						/>
-						{errors['user-pic'] && <p className="text-red-500">This field is required</p>}
+						{errors['user-pic'] && <p className="text-red-500">{locale.required}</p>}
 					</div>
 					<div>
 						<h2 className={`my-3 font-bold text-[25px] ${isError && "text-red-500 uppercase"}`}>
-							{isError ? "Each type must be at most 3 length" : "Add extra fields"}
+							{isError ? locale['extra-limit'] : locale.extra}
 						</h2>
 						{
 							extraFields.map((field, index) => (
@@ -106,14 +107,14 @@ function AddCollections() {
 									key={field.id}
 									className="mb-2 last:mb-0 flex flex-col gap-2 lg:flex-row lg:items-center bg-[#dbe0df] p-2 rounded-[8px] lg:bg-transparent lg:p-0 lg:rounded-none"
 								>
-									<MyInput {...register(`extraFields.${index}.name`, { required: "must be filled" })}
+									<MyInput {...register(`extraFields.${index}.name`, { required: locale.req })}
 										className="border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px] mr-2"
 									/>
 									{errors?.extraFields?.length > 0 && errors.extraFields[index]?.name && <p className="text-center text-red-500">{errors.extraFields[index].name.message}</p>}
-									<select {...register(`extraFields.${index}.type`, { required: "must be selected" })}
+									<select {...register(`extraFields.${index}.type`, { required: locale.selected })}
 										className="border border-[#dbe0df] border-solid placeholder:text-[#777] p-[10px] rounded-[8px] mr-2"
 									>
-										<option value="">Select a type</option>
+										<option value="">{locale['field-empty-option']}</option>
 										<option value="string">String</option>
 										<option value="number">Number</option>
 										<option value="date">Date</option>
@@ -125,7 +126,7 @@ function AddCollections() {
 										data-id={index}
 										onClick={removeExtraField}
 										variant="red"
-										className="min-h-[0] px-[5px] py-1 rounded-[20px] -order-1 self-end lg:order-[0] lg:self-center"
+										className="min-h-[20px] rounded-[20px] px-0 -order-1 self-end lg:order-[0] lg:self-center"
 									>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -142,7 +143,7 @@ function AddCollections() {
 							className="disabled:opacity-[0.8] disabled:cursor-not-allowed"
 							disabled={extraFields.length >= 15}
 						>
-							Add a field
+							{locale['add-field']}
 						</MyButton>
 						{
 							extraFields.length > 1 &&
@@ -151,12 +152,12 @@ function AddCollections() {
 								onClick={removeExtraField}
 								variant="red"
 							>
-								remove all fields
+								{locale['remove-all']}
 							</MyButton>
 						}
 					</div>
 					<MyButton type="submit" variant="dark" className="self-start">
-						save
+						{locale.save}
 					</MyButton>
 				</form>
 			</div>
