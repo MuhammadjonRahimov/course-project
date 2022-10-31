@@ -4,16 +4,17 @@ import Layout from '../components/UI/Layout';
 import MySelect from '../components/UI/MySelect';
 
 import { Editor } from '@tinymce/tinymce-react';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { topics } from '../data/topics';
 import { locale } from '../data/locale';
+import { IsShownContext } from '../context';
 
 const labelClass = "font-bold"
 
 function AddCollections() {
+	const { lang } = useContext(IsShownContext);
 	const { register, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onSubmit", });
 	const { fields: extraFields, append, remove } = useFieldArray({ control, name: "extraFields", });
 
@@ -126,7 +127,8 @@ function AddCollections() {
 										data-id={index}
 										onClick={removeExtraField}
 										variant="red"
-										className="min-h-[20px] rounded-[20px] px-0 -order-1 self-end lg:order-[0] lg:self-center"
+										fullHeight="5px"
+										className="rounded-[20px] px-0 -order-1 self-end lg:order-[0] lg:self-center"
 									>
 										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 											<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

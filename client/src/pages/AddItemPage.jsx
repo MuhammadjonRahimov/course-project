@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,6 +7,7 @@ import Layout from '../components/UI/Layout';
 import MyInput from '../components/UI/MyInput';
 import MyButton from '../components/UI/button/MyButton';
 import { locale } from '../data/locale';
+import { IsShownContext } from '../context';
 
 
 const scheme = yup.object().shape({
@@ -20,7 +21,7 @@ const scheme = yup.object().shape({
 const ab = 'Hello';
 
 function AddItemPage() {
-
+	const { lang } = useContext(IsShownContext);
 	useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.addEventListener('keyup', keyPressHandler);

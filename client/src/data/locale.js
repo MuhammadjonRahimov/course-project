@@ -171,7 +171,7 @@ export const locale = new LocalizedStrings({
 		id: "Id",
 		firstname: "Ism",
 		lastname: "Familiya",
-		date: "Tug'ilgan kun/oy/yil",
+		date: "Sana",
 		country: "Mamlakat",
 		phone: "Shaxsiy telefo'n raqam",
 		actions: "Amallar",

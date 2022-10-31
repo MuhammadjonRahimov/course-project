@@ -65,7 +65,9 @@ function AppRouter() {
 			}}
 		>
 			<Routes>
-				{publicRoutes.map((route) => <Route key={route.path} path={route.path} element={route.element} />)}
+				{publicRoutes.map((route) =>
+					<Route key={route.path} path={route.path} element={route.element} />
+				)}
 			</Routes>
 		</IsShownContext.Provider>
 	);

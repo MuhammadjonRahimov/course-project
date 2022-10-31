@@ -3,14 +3,14 @@ import Modal from './UI/Modal';
 
 import { useState, useContext } from 'react';
 import { IsShownContext } from '../context';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { locale } from '../data/locale';
 
 function Sidebar() {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const { showSidebar, setShowSidebar, showAuthFormHandler, languageHandler, lang } = useContext(IsShownContext);
-
+	const { showSidebar, setShowSidebar, showAuthFormHandler, languageHandler, lang } =
+		useContext(IsShownContext);
 	function closeSidebar() {
 		setShowSidebar(false);
 		document.body.style.overflow = "auto";
@@ -48,7 +48,15 @@ function Sidebar() {
 							{locale['register-login']}
 						</button>
 					</li>
-					{listContent.map(elem => <li className='p-5  border-b-[1px] border-[rgb(230, 234, 234)] font-bold text-2xl' key={elem.text}>{elem.text}</li>)}
+					{listContent.map(elem => <li
+						className='p-5  border-b-[1px] border-[rgb(230, 234, 234)] font-bold text-2xl'
+						key={elem.text}
+						onClick={closeSidebar}
+					>
+						<Link to="/collections">
+							{elem.text}
+						</Link>
+					</li>)}
 					<li>
 						{location.pathname !== '/' &&
 							<MyButton
