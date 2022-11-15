@@ -11,9 +11,11 @@ function Layout({ children, title }) {
 		<>
 			{showAuthForm && <RegisterOrLogin />}
 			{showSidebar && <Sidebar />}
-			<Header title={title} />
-			<div className="p-2">
-				{children}
+			<div className={`${showSidebar && 'translate-x-[320px]'} ease-linear duration-[300ms]`}>
+				<Header title={title} />
+				<div className="p-2">
+					{children}
+				</div>
 			</div>
 		</>
 	)
