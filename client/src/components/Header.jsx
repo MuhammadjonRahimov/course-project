@@ -11,7 +11,7 @@ function Header({ title }) {
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const { showSidebar, setShowSidebar, showAuthFormHandler, isAuth } = useContext(AppContext);
+	const { setShowSidebar, showAuthFormHandler, isAuth } = useContext(AppContext);
 
 	const [searching, setSearching] = useState(false);
 	const focusRef = useRef(null);
@@ -33,7 +33,7 @@ function Header({ title }) {
 		navigate('/');
 	}
 	return (
-		<header className={` bg-[#f4f7f6] h-[70px] border-b-[1px] border-[rgb(230, 234, 234)] flex ${showSidebar && 'translate-x-[320px]'} ease-linear duration-[300ms]`}>
+		<header className={` bg-[#f4f7f6] h-[70px] border-b-[1px] border-[rgb(230, 234, 234)] flex`}>
 			<div className="h-[100%] w-[60px] sm:w-[115px] border-r-[1px] border-[rgb(230, 234, 234)] text-center"
 			>
 				<MyButton onClick={handleSidebar}>
