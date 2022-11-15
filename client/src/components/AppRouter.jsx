@@ -4,18 +4,15 @@ import { Route, Routes } from 'react-router-dom';
 
 import { publicRoutes, privateRoutes } from '../routes';
 import { locale } from '../data/locale';
+import useLocalStorage from '../hooks/use-localStorage';
 
 function AppRouter() {
 	const [showSidebar, setShowSidebar] = useState(false);
 	const [showAuthForm, setShowAuthForm] = useState(false);
 	const [isAuth, setIsAuth] = useState(false);
-	const [lang, setLang] = useState('en');
+	const { item: lang, setItem: setLang } = useLocalStorage("lang", "en");
 
-
-
-	useEffect(() => {
-	}, [lang]);
-
+	locale.setLanguage(lang);
 
 	useEffect(() => {
 		document.addEventListener('keydown', e => {
@@ -42,7 +39,6 @@ function AppRouter() {
 
 	function languageHandler() {
 		setLang(lang === 'en' ? 'uz' : 'en');
-		locale.setLanguage(lang === 'en' ? 'uz' : 'en');
 	}
 
 	function showAuthFormHandler() {
