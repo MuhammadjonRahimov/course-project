@@ -5,10 +5,10 @@ import { tags } from "../data/tag-dates";
 import Tags from '../components/Tags';
 import { locale } from "../data/locale";
 import { useContext, useEffect, useState } from "react";
-import { IsShownContext } from "../context";
+import { AppContext } from "../context";
 
 function Home() {
-	const { lang } = useContext(IsShownContext);
+	const { lang } = useContext(AppContext);
 
 	return (
 		<Layout title={locale['home-title']}>

@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import Table from "../components/table/Table";
 import Layout from "../components/UI/Layout";
-import { IsShownContext } from "../context";
+import { AppContext } from "../context";
 
 function Action() {
-	const { lang } = useContext(IsShownContext);
+	const { lang } = useContext(AppContext);
 	return (
 		<Layout>
 			<Table />

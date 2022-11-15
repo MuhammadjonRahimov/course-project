@@ -9,12 +9,12 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { locale } from '../data/locale';
-import { IsShownContext } from '../context';
+import { AppContext } from '../context';
 
 const labelClass = "font-bold"
 
 function AddCollections() {
-	const { lang } = useContext(IsShownContext);
+	const { lang } = useContext(AppContext);
 	const { register, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onSubmit", });
 	const { fields: extraFields, append, remove } = useFieldArray({ control, name: "extraFields", });
 

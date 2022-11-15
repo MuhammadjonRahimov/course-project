@@ -3,7 +3,7 @@ import MyForm from './UI/MyForm';
 import MyInput from './UI/MyInput';
 
 import { useState, useRef, useEffect, useContext } from 'react';
-import { IsShownContext } from '../context';
+import { AppContext } from '../context';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { locale } from '../data/locale';
 
@@ -11,7 +11,7 @@ function Header({ title }) {
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const { showSidebar, setShowSidebar, showAuthFormHandler, isAuth } = useContext(IsShownContext);
+	const { showSidebar, setShowSidebar, showAuthFormHandler, isAuth } = useContext(AppContext);
 
 	const [searching, setSearching] = useState(false);
 	const focusRef = useRef(null);

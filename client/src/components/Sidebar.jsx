@@ -2,7 +2,7 @@ import MyButton from './UI/button/MyButton';
 import Modal from './UI/Modal';
 
 import { useState, useContext } from 'react';
-import { IsShownContext } from '../context';
+import { AppContext } from '../context';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { locale } from '../data/locale';
 
@@ -10,7 +10,7 @@ function Sidebar() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { showSidebar, setShowSidebar, showAuthFormHandler, languageHandler, lang } =
-		useContext(IsShownContext);
+		useContext(AppContext);
 	function closeSidebar() {
 		setShowSidebar(false);
 		document.body.style.overflow = "auto";

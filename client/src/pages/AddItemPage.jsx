@@ -7,7 +7,7 @@ import Layout from '../components/UI/Layout';
 import MyInput from '../components/UI/MyInput';
 import MyButton from '../components/UI/button/MyButton';
 import { locale } from '../data/locale';
-import { IsShownContext } from '../context';
+import { AppContext } from '../context';
 
 
 const scheme = yup.object().shape({
@@ -21,7 +21,7 @@ const scheme = yup.object().shape({
 const ab = 'Hello';
 
 function AddItemPage() {
-	const { lang } = useContext(IsShownContext);
+	const { lang } = useContext(AppContext);
 	useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.addEventListener('keyup', keyPressHandler);

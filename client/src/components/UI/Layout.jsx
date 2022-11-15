@@ -3,10 +3,10 @@ import Sidebar from '../Sidebar';
 import Header from '../Header';
 
 import { useContext } from 'react';
-import { IsShownContext } from '../../context';
+import { AppContext } from '../../context';
 
 function Layout({ children, title }) {
-	const { showAuthForm, showSidebar } = useContext(IsShownContext);
+	const { showAuthForm, showSidebar } = useContext(AppContext);
 	return (
 		<>
 			{showAuthForm && <RegisterOrLogin />}

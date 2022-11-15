@@ -2,11 +2,11 @@ import Layout from "../components/UI/Layout";
 import Section from "../components/section/Section";
 import cardDates from '../data/card-dates';
 import { useContext } from "react";
-import { IsShownContext } from "../context";
+import { AppContext } from "../context";
 import { Link } from 'react-router-dom';
 
 function Collections() {
-	const { lang } = useContext(IsShownContext);
+	const { lang } = useContext(AppContext);
 	return (
 		<Layout title="Collection-1">
 			<Section title="Single Collection" dates={cardDates} />

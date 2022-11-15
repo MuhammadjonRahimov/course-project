@@ -7,10 +7,10 @@ import { singleDate } from '../data/card-dates';
 import { commentDates } from '../data/comment-dates';
 import { locale } from '../data/locale';
 import { useContext } from 'react';
-import { IsShownContext } from '../context';
+import { AppContext } from '../context';
 
 function ItemPage() {
-	const { lang } = useContext(IsShownContext);
+	const { lang } = useContext(AppContext);
 	return (
 		<>
 			<Layout title="Item">
