@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IsShownContext } from '../context';
+import { AppContext } from '../context';
 import { Route, Routes } from 'react-router-dom';
 
 import { publicRoutes, privateRoutes } from '../routes';
@@ -52,7 +52,7 @@ function AppRouter() {
 		document.body.style.overflow = "auto";
 	}
 	return (
-		<IsShownContext.Provider
+		<AppContext.Provider
 			value={{
 				showSidebar,
 				setShowSidebar,
@@ -69,7 +69,7 @@ function AppRouter() {
 					<Route key={route.path} path={route.path} element={route.element} />
 				)}
 			</Routes>
-		</IsShownContext.Provider>
+		</AppContext.Provider>
 	);
 }
 
