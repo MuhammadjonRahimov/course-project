@@ -9,7 +9,6 @@ import { AppContext } from "../context";
 
 function Home() {
 	const { lang } = useContext(AppContext);
-
 	return (
 		<Layout title={locale['home-title']}>
 			<Section title={locale['last-updates']} dates={cardDates} />

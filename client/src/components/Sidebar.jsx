@@ -6,6 +6,7 @@ import { AppContext } from '../context';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { locale } from '../data/locale';
 
+
 function Sidebar() {
 	const location = useLocation();
 	const navigate = useNavigate();
