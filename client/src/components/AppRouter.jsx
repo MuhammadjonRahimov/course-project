@@ -11,9 +11,11 @@ function AppRouter() {
 	const [isAuth, setIsAuth] = useState(false);
 	const [lang, setLang] = useState('en');
 
+
+
 	useEffect(() => {
-		locale.setLanguage(lang);
 	}, [lang]);
+
 
 	useEffect(() => {
 		document.addEventListener('keydown', e => {
@@ -40,6 +42,7 @@ function AppRouter() {
 
 	function languageHandler() {
 		setLang(lang === 'en' ? 'uz' : 'en');
+		locale.setLanguage(lang === 'en' ? 'uz' : 'en');
 	}
 
 	function showAuthFormHandler() {
