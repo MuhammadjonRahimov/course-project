@@ -10,12 +10,16 @@ import { locale } from '../data/locale';
 function Header({ title }) {
 	const location = useLocation();
 	const navigate = useNavigate();
+
 	const { showSidebar, setShowSidebar, showAuthFormHandler, isAuth } = useContext(IsShownContext);
+
 	const [searching, setSearching] = useState(false);
+	const focusRef = useRef(null);
+
 	useEffect(() => {
 		searching && focusRef.current.focus();
 	}, [searching]);
-	const focusRef = useRef(null);
+
 	function handleSidebar() {
 		setShowSidebar(true);
 		document.body.style.overflow = "hidden";
