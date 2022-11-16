@@ -102,7 +102,7 @@ export const locale = new LocalizedStrings({
 
 		// registration
 		member: "Azomisiz ?",
-		register: "Hozir ro'yxatdan o'ting",
+		register: "Ro'yxatdan o'ting",
 		username: "Foydalanuvchi nomi",
 		email: "Elektro'n po'chta",
 		password: "Parol",
