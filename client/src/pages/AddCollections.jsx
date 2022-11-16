@@ -11,10 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import { locale } from '../data/locale';
 import { AppContext } from '../context';
 
-const labelClass = "font-bold"
 
 function AddCollections() {
-	const { lang } = useContext(AppContext);
+	const { mode } = useContext(AppContext);
+	const labelClass = `font-bold ${mode === "dark" ? "text-white" : "text-black"}`;
+
 	const { register, handleSubmit, setValue, control, formState: { errors } } = useForm({ mode: "onSubmit", });
 	const { fields: extraFields, append, remove } = useFieldArray({ control, name: "extraFields", });
 
@@ -54,11 +55,13 @@ function AddCollections() {
 		};
 	}
 	return (
-		<Layout title="Add collection">
+		<Layout title={locale['collection-name']}>
 			<div className="p-5 max-w-[900px] mx-auto">
 				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-y-[15px]">
-					<label className={labelClass} htmlFor="name">
-						{locale['add-col-name']}
+					<label htmlFor="name">
+						<p className={labelClass}>
+							{locale['add-col-name']}
+						</p>
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder={locale['collection-name']} id="name"
@@ -66,8 +69,10 @@ function AddCollections() {
 						/>
 						{errors['name'] && <p className="font-normal text-red-500">{locale.required}</p>}
 					</label>
-					<label className={labelClass} >
-						{locale.desc}
+					<label>
+						<p className={labelClass}>
+							{locale.desc}
+						</p>
 						<Editor
 							apiKey='87sdhktm3lv6ev797loxuebuzcbv97w0kdrofgwbujanwogv'
 							onInit={(evt, editor) => editorRef.current = editor}
@@ -76,7 +81,7 @@ function AddCollections() {
 						/>
 						{errors['desc'] && <p className="font-normal text-red-500">{locale.required}</p>}
 					</label>
-					<label className={labelClass} htmlFor="topic">
+					<label htmlFor="topic">
 						<MySelect
 							defaultValue={locale.topic}
 							data={locale.topics}
@@ -86,7 +91,7 @@ function AddCollections() {
 					</label>
 					<div className="sm:flex sm:items-center">
 						<label htmlFor="user-pic" className="cursor-pointer">
-							<svg style={{ width: '50px', height: '50px' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+							<svg style={{ width: '50px', height: '50px' }} xmlns="http://www.w3.org/2000/svg" fill={mode === "dark" ? "white" : "none"} viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
 								<path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
 							</svg>
 						</label>
@@ -99,8 +104,8 @@ function AddCollections() {
 						{errors['user-pic'] && <p className="text-red-500">{locale.required}</p>}
 					</div>
 					<div>
-						<h2 className={`my-3 font-bold text-[25px] ${isError && "text-red-500 uppercase"}`}>
-							{isError ? locale['extra-limit'] : locale.extra}
+						<h2 className={`my-3 font-bold text-[25px]  ${isError && "text-red-500 uppercase"}`}>
+							{isError ? locale['extra-limit'] : <p className={labelClass}>{locale.extra}</p>}
 						</h2>
 						{
 							extraFields.map((field, index) => (
@@ -142,7 +147,7 @@ function AddCollections() {
 					<div className="flex items-center gap-2 self-start">
 						<MyButton
 							onClick={addExtraFieldHandler}
-							variant="dark"
+							variant={mode === "dark" ? "light" : "dark"}
 							className="disabled:opacity-[0.8] disabled:cursor-not-allowed"
 							disabled={extraFields.length >= 15}
 						>
@@ -159,7 +164,7 @@ function AddCollections() {
 							</MyButton>
 						}
 					</div>
-					<MyButton type="submit" variant="dark" className="self-start">
+					<MyButton type="submit" variant={mode === "dark" ? "light" : "dark"} className="self-start">
 						{locale.save}
 					</MyButton>
 				</form>
