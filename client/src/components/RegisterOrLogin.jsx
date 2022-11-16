@@ -20,7 +20,6 @@ function RegisterOrLogin() {
 		{ placeholder: locale.password },
 	]
 
-
 	const { hideAuthFormHandler } = useContext(AppContext);
 	const [isAuth, setIsAuth] = useState(false);
 	const textStyles = 'text-[14px] md:text-[16px]';
