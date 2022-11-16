@@ -35,3 +35,7 @@ body{
 section{
 	margin-bottom: 4rem;
 }
+
+.dark{
+	background: rgb(20,21,21);
+}
