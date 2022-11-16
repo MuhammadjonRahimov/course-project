@@ -6,22 +6,17 @@ import MyForm from "./UI/MyForm";
 import { useState, useContext } from 'react';
 import { AppContext } from "../context";
 import { locale } from '../data/locale';
+import sendRegisterInputDates from '../data/register-input-dates';
+import sendLoginInputDates from '../data/login-input-dates';
 
 
 function RegisterOrLogin() {
-	const registerInputDates = [
-		{ placeholder: locale.username },
-		{ placeholder: locale.email },
-		{ placeholder: locale.password },
-	]
-
-	const loginInputDates = [
-		{ placeholder: locale.username },
-		{ placeholder: locale.password },
-	]
-
-	const { hideAuthFormHandler } = useContext(AppContext);
 	const [isAuth, setIsAuth] = useState(false);
+
+	const registerInputDates = sendRegisterInputDates(locale);
+	const loginInputDates = sendLoginInputDates(locale);
+	const { hideAuthFormHandler } = useContext(AppContext);
+
 	const textStyles = 'text-[14px] md:text-[16px]';
 
 	function authHandler() {
