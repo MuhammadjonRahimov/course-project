@@ -14,11 +14,11 @@ import MyButton from '../components/UI/button/MyButton';
 
 function AddItemPage() {
 	const scheme = yup.object().shape({
-		name: yup.string().trim().required(locale.required),
-		role: yup.string().trim().required(locale.required),
-		type: yup.string().trim().required(locale.required),
+		name: yup.string().trim().required(),
+		role: yup.string().trim().required(),
+		type: yup.string().trim().required(),
 		tags: yup.array().of(yup.string()),
-		sth: yup.string().trim().required(locale.required),
+		sth: yup.string().trim().required(),
 	});
 
 	const { mode, lang } = useContext(AppContext);
