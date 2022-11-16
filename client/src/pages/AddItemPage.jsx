@@ -21,7 +21,14 @@ const scheme = yup.object().shape({
 const ab = 'Hello';
 
 function AddItemPage() {
-	const { lang } = useContext(AppContext);
+	const { mode } = useContext(AppContext);
+	const [contents, setContents] = useState([]);
+	const inputRef = useRef(null);
+	const { register, handleSubmit, control, formState: { errors } } = useForm({ resolver: yupResolver(scheme), mode: "onBlur" });
+	const { fields: tags, append } = useFieldArray({ control, name: "tags", });
+
+	const label_text_style = mode === "dark" ? "text-white" : "text-black";
+
 	useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.addEventListener('keyup', keyPressHandler);
@@ -29,10 +36,7 @@ function AddItemPage() {
 		return () => inputRef.current?.removeEventListener('keyup', keyPressHandler);
 	}, []);
 
-	const [contents, setContents] = useState([]);
-	const inputRef = useRef(null);
-	const { register, handleSubmit, control, formState: { errors } } = useForm({ resolver: yupResolver(scheme), mode: "onBlur" });
-	const { fields: tags, append } = useFieldArray({ control, name: "tags", });
+
 
 	function keyPressHandler(e) {
 		if ((e.code === "Enter" || e.code === 'Space') && inputRef.current.value.trim().length > 0) {
@@ -63,7 +67,9 @@ function AddItemPage() {
 			<div className="p-5 w-[90%] md:w-[700px] lg:w-[900px] mx-auto my-5">
 				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-y-[15px]">
 					<label className="font-bold" htmlFor="name">
-						{locale['add-item-name']}
+						<p className={label_text_style}>
+							{locale['add-item-name']}
+						</p>
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder={locale['collection-name']} id="name"
@@ -72,7 +78,9 @@ function AddItemPage() {
 					</label>
 					{errors.name && <p className="text-red-500">{errors.name.message}</p>}
 					<label htmlFor="tag" className="font-bold">
-						{locale['tag-name']}
+						<p className={label_text_style}>
+							{locale['tag-name']}
+						</p>
 						<div className="flex flex-wrap gap-4 bg-white p-5 border border-[#dbe0df] border-solid rounded-[8px]">
 							{tags.map((_, index) =>
 								<input
@@ -109,7 +117,9 @@ function AddItemPage() {
 					{/* {errors.tags && <p className="text-red-500">{errors.tags.message}</p>} */}
 					<h3 className="font-bold text-[25px]">{locale['extra-fields']}</h3>
 					<label className="font-bold" htmlFor="role">
-						{locale.role}
+						<p className={label_text_style}>
+							{locale.role}
+						</p>
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder="Role name" id="role"
@@ -118,7 +128,9 @@ function AddItemPage() {
 					</label>
 					{errors.role && <p className="text-red-500">{errors.role.message}</p>}
 					<label className="font-bold" htmlFor="type">
-						{locale.type}
+						<p className={label_text_style}>
+							{locale.type}
+						</p>
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
 							placeholder="Type name" id="type"
@@ -126,10 +138,12 @@ function AddItemPage() {
 						/>
 					</label>
 					{errors.type && <p className="text-red-500">{errors.type.message}</p>}
-					<h3 className="font-bold text-[25px]">{locale['colors-title']}</h3>
+					<h3 className={`font-bold text-[25px] ${label_text_style}`}>{locale['colors-title']}</h3>
 					<div className="flex gap-3">
 						<label htmlFor='check-1'>
-							{locale.colors.at(0)}
+							<p className={label_text_style}>
+								{locale.colors.at(0)}
+							</p>
 						</label>
 						<MyInput
 							{...register("check-1", { required: true })}
@@ -139,7 +153,9 @@ function AddItemPage() {
 							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]"
 						/>
 						<label htmlFor="check-2">
-							{locale.colors.at(1)}
+							<p className={label_text_style}>
+								{locale.colors.at(1)}
+							</p>
 						</label>
 						<MyInput
 							{...register("check-2", { required: true })}
@@ -148,7 +164,9 @@ function AddItemPage() {
 							type="checkbox"
 							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
 						<label htmlFor="check-3">
-							{locale.colors.at(-1)}
+							<p className={label_text_style}>
+								{locale.colors.at(-1)}
+							</p>
 						</label>
 						<MyInput
 							{...register("check-3", { required: true })}
@@ -157,12 +175,12 @@ function AddItemPage() {
 							type="checkbox"
 							className="h-[20px] w-[20px] accent-[rgb(20,21,21)]" />
 					</div>
-					<MyButton type="submit" variant="dark" className="self-start my-3">
+					<MyButton type="submit" variant={mode === "dark" ? "light" : "dark"} className="self-start my-3">
 						{locale['add-item']}
 					</MyButton>
 				</form>
 			</div>
-		</Layout>
+		</Layout >
 	)
 }
 
