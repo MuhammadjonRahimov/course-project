@@ -1,6 +1,9 @@
-import { locale } from "./locale"
+function loginInputDates(locale) {
+	const loginInputDates = [
+		{ placeholder: locale.username },
+		{ placeholder: locale.password },
+	]
+	return loginInputDates;
+}
 
-export const loginInputDates = [
-	{ placeholder: locale.username },
-	{ placeholder: locale.password },
-]
+export default loginInputDates;

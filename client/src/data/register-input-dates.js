@@ -1,7 +1,10 @@
-import { locale } from '../data/locale';
+function sendRegisterInputDates(locale) {
+	const registerInputDates = [
+		{ placeholder: locale.username },
+		{ placeholder: locale.email },
+		{ placeholder: locale.password },
+	]
+	return registerInputDates;
+}
 
-export const registerInputDates = [
-	{ placeholder: locale.username },
-	{ placeholder: locale.email },
-	{ placeholder: locale.password },
-]
+export default sendRegisterInputDates;
