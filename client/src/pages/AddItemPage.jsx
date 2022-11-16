@@ -3,15 +3,14 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { AppContext } from '../context';
+import { locale } from '../data/locale';
+
 import Layout from '../components/UI/Layout';
 import MyInput from '../components/UI/MyInput';
 import MyButton from '../components/UI/button/MyButton';
-import { locale } from '../data/locale';
-import { AppContext } from '../context';
 
 
-
-const ab = 'Hello';
 
 function AddItemPage() {
 	const scheme = yup.object().shape({
@@ -21,7 +20,8 @@ function AddItemPage() {
 		tags: yup.array().of(yup.string()),
 		sth: yup.string().trim().required(locale.required),
 	});
-	const { mode } = useContext(AppContext);
+
+	const { mode, lang } = useContext(AppContext);
 	const [contents, setContents] = useState([]);
 	const inputRef = useRef(null);
 	const { register, handleSubmit, control, formState: { errors } } = useForm({ resolver: yupResolver(scheme), mode: "onBlur" });
@@ -29,14 +29,14 @@ function AddItemPage() {
 
 	const label_text_style = mode === "dark" ? "text-white" : "text-black";
 
+	console.log('rendered');
+
 	useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.addEventListener('keyup', keyPressHandler);
 		}
 		return () => inputRef.current?.removeEventListener('keyup', keyPressHandler);
 	}, []);
-
-
 
 	function keyPressHandler(e) {
 		if ((e.code === "Enter" || e.code === 'Space') && inputRef.current.value.trim().length > 0) {
@@ -61,9 +61,8 @@ function AddItemPage() {
 		setContents(newContents);
 	}
 
-
 	return (
-		<Layout title="Add Item">
+		<Layout title={locale['add-item']}>
 			<div className="p-5 w-[90%] md:w-[700px] lg:w-[900px] mx-auto my-5">
 				<form onSubmit={handleSubmit(formSubmit)} className="flex flex-col gap-y-[15px]">
 					<label className="font-bold" htmlFor="name">
@@ -76,7 +75,7 @@ function AddItemPage() {
 							{...register("name", { required: true })}
 						/>
 					</label>
-					{errors.name && <p className="text-red-500">{errors.name.message}</p>}
+					{errors.name && <p className="text-red-500">{locale.required}</p>}
 					<label htmlFor="tag" className="font-bold">
 						<p className={label_text_style}>
 							{locale['tag-name']}
@@ -109,7 +108,7 @@ function AddItemPage() {
 								ref={inputRef}
 								id="tag"
 								className="flex-1 placeholder:text-[#dbe0d] "
-								placeholder="Add tag"
+								placeholder={locale['tag-name']}
 							// {...register("tags", { required: true })}
 							/>
 						</div>
@@ -122,22 +121,22 @@ function AddItemPage() {
 						</p>
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
-							placeholder="Role name" id="role"
+							placeholder={locale.role} id="role"
 							{...register("role", { required: true })}
 						/>
 					</label>
-					{errors.role && <p className="text-red-500">{errors.role.message}</p>}
+					{errors.role && <p className="text-red-500">{locale.required}</p>}
 					<label className="font-bold" htmlFor="type">
 						<p className={label_text_style}>
 							{locale.type}
 						</p>
 						<MyInput
 							className="w-full border border-[#dbe0df] border-solid placeholder:text-[#777] py-[10px] rounded-[8px]"
-							placeholder="Type name" id="type"
+							placeholder={locale.type} id="type"
 							{...register("type", { required: true })}
 						/>
 					</label>
-					{errors.type && <p className="text-red-500">{errors.type.message}</p>}
+					{errors.type && <p className="text-red-500">{locale.required}</p>}
 					<h3 className={`font-bold text-[25px] ${label_text_style}`}>{locale['colors-title']}</h3>
 					<div className="flex gap-3">
 						<label htmlFor='check-1'>
