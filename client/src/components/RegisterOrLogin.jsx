@@ -1,16 +1,26 @@
 import Modal from "./UI/Modal";
 import MyButton from "./UI/button/MyButton";
 import MyInput from "./UI/MyInput";
+import MyForm from "./UI/MyForm";
 
 import { useState, useContext } from 'react';
 import { AppContext } from "../context";
-import { loginInputDates } from "../data/login-input-dates";
-import { registerInputDates } from "../data/register-input-dates";
-import MyForm from "./UI/MyForm";
-
 import { locale } from '../data/locale';
 
+
 function RegisterOrLogin() {
+	const registerInputDates = [
+		{ placeholder: locale.username },
+		{ placeholder: locale.email },
+		{ placeholder: locale.password },
+	]
+
+	const loginInputDates = [
+		{ placeholder: locale.username },
+		{ placeholder: locale.password },
+	]
+
+
 	const { hideAuthFormHandler } = useContext(AppContext);
 	const [isAuth, setIsAuth] = useState(false);
 	const textStyles = 'text-[14px] md:text-[16px]';
