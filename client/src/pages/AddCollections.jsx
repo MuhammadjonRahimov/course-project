@@ -122,7 +122,8 @@ function AddCollections() {
 										<option value="textarea">Text</option>
 										<option value="checkbox">Checkbox</option>
 									</select>
-									{errors?.extraFields?.length > 0 && errors.extraFields[index]?.type && <p className="text-center text-red-500">{errors.extraFields[index].type.message}</p>}
+									{errors?.extraFields?.length > 0 && errors.extraFields[index]?.type && <p className="text-center text-red-500">{locale.required}</p>}
+									{/* {errors?.extraFields?.length > 0 && errors.extraFields[index]?.type && <p className="text-center text-red-500">{errors.extraFields[index].type.message}</p>} */}
 									<MyButton
 										data-id={index}
 										onClick={removeExtraField}

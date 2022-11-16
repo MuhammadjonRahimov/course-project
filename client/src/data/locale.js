@@ -129,7 +129,7 @@ export const locale = new LocalizedStrings({
 		'add-col-name': "Nom",
 		desc: "Izox",
 		topic: "Mavzu tanlang",
-		extra: "Qo'shimcha qatorr qo'shing",
+		extra: "Qo'shimcha qator qo'shing",
 		'extra-limit': "Har bir turning uzunligi 3 ta dan oshmasligi kerak",
 		'add-field': "Qator qo'shish",
 		'remove-all': "Barcha qatorni o'chirish",
