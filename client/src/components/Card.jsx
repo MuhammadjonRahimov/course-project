@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { locale } from '../data/locale';
+import { AppContext } from '../context';
 
 function Card(props) {
+	const { mode } = useContext(AppContext);
 	const [counter, setCounter] = useState(0);
+
+	const dynamicBackground = mode === "dark" ? "bg-[#f4f7f6] text-black" : "bg-black text-white";
 	return (
 		<Link to="/item">
-			<div className="bg-black uppercase grid place-items-center text-white  min-h-[150px]">
+			<div className={`uppercase grid place-items-center min-h-[150px] ${dynamicBackground}`}>
 				{locale.item}
 			</div>
-			<div className=" flex items-center justify-between p-2  bg-[#f4f7f6]">
+			<div className=" flex items-center justify-between p-2  bg-[#d1d3d2]">
 				<div>
 					<h4>{locale.author}: <span>{props.data.author}</span></h4>
 					<h5>{locale.published}:{props.data.time.toLocaleDateString()}</h5>
