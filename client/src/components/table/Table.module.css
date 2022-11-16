@@ -6,6 +6,9 @@ td, th{
 	border: 1px solid #ddd;
 	padding:8px;
 }
+tr:nth-child(odd) {
+	background: #f9f9f9;
+}
 tr:nth-child(even) {
 	background-color:#f2f2f2;
 }
