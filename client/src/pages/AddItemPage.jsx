@@ -10,17 +10,17 @@ import { locale } from '../data/locale';
 import { AppContext } from '../context';
 
 
-const scheme = yup.object().shape({
-	name: yup.string().trim().required(locale.required),
-	role: yup.string().trim().required(locale.required),
-	type: yup.string().trim().required(locale.required),
-	tags: yup.array().of(yup.string()),
-	sth: yup.string().trim().required(locale.required),
-});
 
 const ab = 'Hello';
 
 function AddItemPage() {
+	const scheme = yup.object().shape({
+		name: yup.string().trim().required(locale.required),
+		role: yup.string().trim().required(locale.required),
+		type: yup.string().trim().required(locale.required),
+		tags: yup.array().of(yup.string()),
+		sth: yup.string().trim().required(locale.required),
+	});
 	const { mode } = useContext(AppContext);
 	const [contents, setContents] = useState([]);
 	const inputRef = useRef(null);
