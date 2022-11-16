@@ -1,18 +1,20 @@
 import styles from './Table.module.css';
 
-import { COLUMNS } from '../../data/columns';
+import sendColumns from '../../data/columns';
 import MOCK_DATA from '../../data/MOCK_DATA.json'
 
 import { useTable } from 'react-table';
 import { useMemo } from 'react';
+import { locale } from '../../data/locale';
+import { useContext } from 'react';
+import { AppContext } from '../../context';
 
 function Table() {
-	const columns = useMemo(() => COLUMNS, []);
+	const { lang } = useContext(AppContext);
+	const COLUMNS = sendColumns(locale);
+	const columns = useMemo(() => COLUMNS, [lang]);
 	const data = useMemo(() => MOCK_DATA, []);
-
 	const { getTableProps, getTableBodyProps, headerGroups, footerGroups, rows, prepareRow } = useTable({ columns, data });
-
-
 	return (
 		<table {...getTableProps}>
 			<thead>
