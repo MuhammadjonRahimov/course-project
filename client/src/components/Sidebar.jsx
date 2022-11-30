@@ -1,11 +1,10 @@
 import MyButton from './UI/button/MyButton';
 import Modal from './UI/Modal';
 
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../context';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { locale } from '../data/locale';
-import useMode from '../hooks/use-mode';
 
 
 function Sidebar() {
